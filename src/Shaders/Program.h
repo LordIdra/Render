@@ -9,6 +9,7 @@ private:
 
 public:
     Program();
+    void Init();
     void AddShader(Shader shader);
     void Link();
     void Use();

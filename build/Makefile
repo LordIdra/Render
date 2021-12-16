@@ -57,10 +57,10 @@ RM = /usr/local/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/percy/Projects/graphics
+CMAKE_SOURCE_DIR = /home/percy/Render
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/percy/Projects/graphics/build
+CMAKE_BINARY_DIR = /home/percy/Render/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/percy/Projects/graphics/build/CMakeFiles /home/percy/Projects/graphics/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/percy/Render/build/CMakeFiles /home/percy/Render/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/percy/Projects/graphics/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/percy/Render/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -117,24 +117,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Graphics
+# Target rules for targets named Render
 
 # Build rule for target.
-Graphics: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Graphics
-.PHONY : Graphics
+Render: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Render
+.PHONY : Render
 
 # fast build rule for target.
-Graphics/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/build
-.PHONY : Graphics/fast
+Render/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/build
+.PHONY : Render/fast
 
 src/Input/Keys/Keys.o: src/Input/Keys/Keys.cpp.o
 .PHONY : src/Input/Keys/Keys.o
 
 # target to build an object file
 src/Input/Keys/Keys.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/Input/Keys/Keys.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/Input/Keys/Keys.cpp.o
 .PHONY : src/Input/Keys/Keys.cpp.o
 
 src/Input/Keys/Keys.i: src/Input/Keys/Keys.cpp.i
@@ -142,7 +142,7 @@ src/Input/Keys/Keys.i: src/Input/Keys/Keys.cpp.i
 
 # target to preprocess a source file
 src/Input/Keys/Keys.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/Input/Keys/Keys.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/Input/Keys/Keys.cpp.i
 .PHONY : src/Input/Keys/Keys.cpp.i
 
 src/Input/Keys/Keys.s: src/Input/Keys/Keys.cpp.s
@@ -150,7 +150,7 @@ src/Input/Keys/Keys.s: src/Input/Keys/Keys.cpp.s
 
 # target to generate assembly for a file
 src/Input/Keys/Keys.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/Input/Keys/Keys.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/Input/Keys/Keys.cpp.s
 .PHONY : src/Input/Keys/Keys.cpp.s
 
 src/Input/Mouse/Mouse.o: src/Input/Mouse/Mouse.cpp.o
@@ -158,7 +158,7 @@ src/Input/Mouse/Mouse.o: src/Input/Mouse/Mouse.cpp.o
 
 # target to build an object file
 src/Input/Mouse/Mouse.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/Input/Mouse/Mouse.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/Input/Mouse/Mouse.cpp.o
 .PHONY : src/Input/Mouse/Mouse.cpp.o
 
 src/Input/Mouse/Mouse.i: src/Input/Mouse/Mouse.cpp.i
@@ -166,7 +166,7 @@ src/Input/Mouse/Mouse.i: src/Input/Mouse/Mouse.cpp.i
 
 # target to preprocess a source file
 src/Input/Mouse/Mouse.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/Input/Mouse/Mouse.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/Input/Mouse/Mouse.cpp.i
 .PHONY : src/Input/Mouse/Mouse.cpp.i
 
 src/Input/Mouse/Mouse.s: src/Input/Mouse/Mouse.cpp.s
@@ -174,7 +174,7 @@ src/Input/Mouse/Mouse.s: src/Input/Mouse/Mouse.cpp.s
 
 # target to generate assembly for a file
 src/Input/Mouse/Mouse.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/Input/Mouse/Mouse.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/Input/Mouse/Mouse.cpp.s
 .PHONY : src/Input/Mouse/Mouse.cpp.s
 
 src/Logging/Logging.o: src/Logging/Logging.cpp.o
@@ -182,7 +182,7 @@ src/Logging/Logging.o: src/Logging/Logging.cpp.o
 
 # target to build an object file
 src/Logging/Logging.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/Logging/Logging.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/Logging/Logging.cpp.o
 .PHONY : src/Logging/Logging.cpp.o
 
 src/Logging/Logging.i: src/Logging/Logging.cpp.i
@@ -190,7 +190,7 @@ src/Logging/Logging.i: src/Logging/Logging.cpp.i
 
 # target to preprocess a source file
 src/Logging/Logging.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/Logging/Logging.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/Logging/Logging.cpp.i
 .PHONY : src/Logging/Logging.cpp.i
 
 src/Logging/Logging.s: src/Logging/Logging.cpp.s
@@ -198,7 +198,7 @@ src/Logging/Logging.s: src/Logging/Logging.cpp.s
 
 # target to generate assembly for a file
 src/Logging/Logging.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/Logging/Logging.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/Logging/Logging.cpp.s
 .PHONY : src/Logging/Logging.cpp.s
 
 src/Memory/VAO.o: src/Memory/VAO.cpp.o
@@ -206,7 +206,7 @@ src/Memory/VAO.o: src/Memory/VAO.cpp.o
 
 # target to build an object file
 src/Memory/VAO.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/Memory/VAO.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/Memory/VAO.cpp.o
 .PHONY : src/Memory/VAO.cpp.o
 
 src/Memory/VAO.i: src/Memory/VAO.cpp.i
@@ -214,7 +214,7 @@ src/Memory/VAO.i: src/Memory/VAO.cpp.i
 
 # target to preprocess a source file
 src/Memory/VAO.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/Memory/VAO.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/Memory/VAO.cpp.i
 .PHONY : src/Memory/VAO.cpp.i
 
 src/Memory/VAO.s: src/Memory/VAO.cpp.s
@@ -222,7 +222,7 @@ src/Memory/VAO.s: src/Memory/VAO.cpp.s
 
 # target to generate assembly for a file
 src/Memory/VAO.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/Memory/VAO.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/Memory/VAO.cpp.s
 .PHONY : src/Memory/VAO.cpp.s
 
 src/Memory/VBO.o: src/Memory/VBO.cpp.o
@@ -230,7 +230,7 @@ src/Memory/VBO.o: src/Memory/VBO.cpp.o
 
 # target to build an object file
 src/Memory/VBO.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/Memory/VBO.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/Memory/VBO.cpp.o
 .PHONY : src/Memory/VBO.cpp.o
 
 src/Memory/VBO.i: src/Memory/VBO.cpp.i
@@ -238,7 +238,7 @@ src/Memory/VBO.i: src/Memory/VBO.cpp.i
 
 # target to preprocess a source file
 src/Memory/VBO.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/Memory/VBO.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/Memory/VBO.cpp.i
 .PHONY : src/Memory/VBO.cpp.i
 
 src/Memory/VBO.s: src/Memory/VBO.cpp.s
@@ -246,7 +246,7 @@ src/Memory/VBO.s: src/Memory/VBO.cpp.s
 
 # target to generate assembly for a file
 src/Memory/VBO.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/Memory/VBO.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/Memory/VBO.cpp.s
 .PHONY : src/Memory/VBO.cpp.s
 
 src/Shaders/Program.o: src/Shaders/Program.cpp.o
@@ -254,7 +254,7 @@ src/Shaders/Program.o: src/Shaders/Program.cpp.o
 
 # target to build an object file
 src/Shaders/Program.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/Shaders/Program.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/Shaders/Program.cpp.o
 .PHONY : src/Shaders/Program.cpp.o
 
 src/Shaders/Program.i: src/Shaders/Program.cpp.i
@@ -262,7 +262,7 @@ src/Shaders/Program.i: src/Shaders/Program.cpp.i
 
 # target to preprocess a source file
 src/Shaders/Program.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/Shaders/Program.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/Shaders/Program.cpp.i
 .PHONY : src/Shaders/Program.cpp.i
 
 src/Shaders/Program.s: src/Shaders/Program.cpp.s
@@ -270,7 +270,7 @@ src/Shaders/Program.s: src/Shaders/Program.cpp.s
 
 # target to generate assembly for a file
 src/Shaders/Program.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/Shaders/Program.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/Shaders/Program.cpp.s
 .PHONY : src/Shaders/Program.cpp.s
 
 src/Shaders/Shader.o: src/Shaders/Shader.cpp.o
@@ -278,7 +278,7 @@ src/Shaders/Shader.o: src/Shaders/Shader.cpp.o
 
 # target to build an object file
 src/Shaders/Shader.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/Shaders/Shader.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/Shaders/Shader.cpp.o
 .PHONY : src/Shaders/Shader.cpp.o
 
 src/Shaders/Shader.i: src/Shaders/Shader.cpp.i
@@ -286,7 +286,7 @@ src/Shaders/Shader.i: src/Shaders/Shader.cpp.i
 
 # target to preprocess a source file
 src/Shaders/Shader.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/Shaders/Shader.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/Shaders/Shader.cpp.i
 .PHONY : src/Shaders/Shader.cpp.i
 
 src/Shaders/Shader.s: src/Shaders/Shader.cpp.s
@@ -294,7 +294,7 @@ src/Shaders/Shader.s: src/Shaders/Shader.cpp.s
 
 # target to generate assembly for a file
 src/Shaders/Shader.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/Shaders/Shader.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/Shaders/Shader.cpp.s
 .PHONY : src/Shaders/Shader.cpp.s
 
 src/Window/Window.o: src/Window/Window.cpp.o
@@ -302,7 +302,7 @@ src/Window/Window.o: src/Window/Window.cpp.o
 
 # target to build an object file
 src/Window/Window.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/Window/Window.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/Window/Window.cpp.o
 .PHONY : src/Window/Window.cpp.o
 
 src/Window/Window.i: src/Window/Window.cpp.i
@@ -310,7 +310,7 @@ src/Window/Window.i: src/Window/Window.cpp.i
 
 # target to preprocess a source file
 src/Window/Window.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/Window/Window.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/Window/Window.cpp.i
 .PHONY : src/Window/Window.cpp.i
 
 src/Window/Window.s: src/Window/Window.cpp.s
@@ -318,7 +318,7 @@ src/Window/Window.s: src/Window/Window.cpp.s
 
 # target to generate assembly for a file
 src/Window/Window.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/Window/Window.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/Window/Window.cpp.s
 .PHONY : src/Window/Window.cpp.s
 
 src/main.o: src/main.cpp.o
@@ -326,7 +326,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -334,7 +334,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -342,7 +342,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Graphics.dir/build.make CMakeFiles/Graphics.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Render.dir/build.make CMakeFiles/Render.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 # Help Target
@@ -353,7 +353,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Graphics"
+	@echo "... Render"
 	@echo "... src/Input/Keys/Keys.o"
 	@echo "... src/Input/Keys/Keys.i"
 	@echo "... src/Input/Keys/Keys.s"

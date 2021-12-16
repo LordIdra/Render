@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.0)
-project(Graphics)
+project(Render)
 
 set(src_files
     "src/main.cpp"
@@ -28,8 +28,8 @@ find_package(glad CONFIG REQUIRED)
 find_package(glfw3 CONFIG REQUIRED)
 find_package(glm CONFIG REQUIRED)
 
-add_executable(Graphics ${src_files})
-link_libraries(Graphics ${src_files})
+add_executable(Render ${src_files})
+link_libraries(Render ${src_files})
 
 target_link_libraries (${PROJECT_NAME} PRIVATE glad::glad)
 target_link_libraries (${PROJECT_NAME} PRIVATE glfw)

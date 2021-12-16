@@ -1,6 +1,22 @@
 #include "Window.h"
 
 
+
+const int Window::Detail::SAMPLES = 4;
+const char* Window::Detail::NAME = "Test";
+const int Window::Detail::MAJOR_VERSION = 4;
+const int Window::Detail::MINOR_VERSION = 4;
+
+GLFWmonitor* Window::Detail::monitor;
+GLFWwindow* Window::Detail::window;
+const GLFWvidmode* Window::Detail::mode;
+
+int Window::Detail::width;
+int Window::Detail::height;
+int Window::Detail::deltaTime = 0;
+
+
+
 void Window::Detail::InitializeGlfw() {
     if (!glfwInit()) {
         Logging::Info("Failed to initialize GLFW.");
@@ -47,6 +63,13 @@ void Window::Detail::InitializeWindow() {
     Logging::Info("Initialized window.");
 }
 
+void Window::Initialize() {
+    Detail::InitializeGlfw();
+    Detail::InitializeHints();
+    Detail::InitializeWindow();
+    Detail::InitializeGlad();   
+}
+
 void Window::Clear() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
@@ -56,7 +79,7 @@ void Window::Background(float r, float g, float b, float a) {
 }
 
 void Window::SwapBuffers() {
-    glfwSwapBuffers(Window::Detail::window);
+    glfwSwapBuffers(Detail::window);
 }
 
 void Window::PollEvents() {
@@ -64,15 +87,15 @@ void Window::PollEvents() {
 }
 
 void Window::UpdateTime() {
-    Window::Detail::deltaTime = glfwGetTime() - Window::Detail::deltaTime;
+    Detail::deltaTime = glfwGetTime() - Detail::deltaTime;
 }
 
 bool Window::ShouldClose() {
-    return glfwWindowShouldClose(Window::Detail::window);
+    return glfwWindowShouldClose(Detail::window);
 }
 
 void Window::SetShouldClose() {
-    glfwSetWindowShouldClose(Window::Detail::window, true);
+    glfwSetWindowShouldClose(Detail::window, true);
 }
 
 void Window::Terminate() {

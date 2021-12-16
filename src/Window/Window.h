@@ -2,7 +2,6 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-
 #include "../Logging/Logging.h"
 #include "../Input/Mouse/Mouse.h"
 #include "../Input/Keys/Keys.h"
@@ -10,27 +9,30 @@
 using namespace std;
 
 
+
 namespace Window {
+
     namespace Detail {
-        const int SAMPLES = 4;
-        const char* NAME = "Test";
-        const int MAJOR_VERSION = 3;
-        const int MINOR_VERSION = 3;
+        extern const int SAMPLES;
+        extern const char* NAME;
+        extern const int MAJOR_VERSION;
+        extern const int MINOR_VERSION;
 
-        GLFWmonitor* monitor;
-        GLFWwindow* window;
-        const GLFWvidmode* mode;
+        extern GLFWmonitor* monitor;
+        extern GLFWwindow* window;
+        extern const GLFWvidmode* mode;
 
-        int width;
-        int height;
-        int deltaTime;
+        extern int width;
+        extern int height;
+        extern int deltaTime;
+
+        void InitializeGlfw();
+        void InitializeGlad();
+        void InitializeHints();
+        void InitializeWindow();
     }
 
-    void InitializeGlfw();
-    void InitializeGlad();
-    void InitializeHints();
-    void InitializeWindow();
-
+    void Initialize();
     void Clear();
     void Background(float r, float g, float b, float a);
     void SwapBuffers();

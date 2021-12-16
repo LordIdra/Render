@@ -4,6 +4,7 @@
 #include <sstream>
 #include <fstream>
 #include <glad/glad.h>
+#include <GLFW/glfw3.h>
 #include "../Logging/Logging.h"
 
 using namespace std;

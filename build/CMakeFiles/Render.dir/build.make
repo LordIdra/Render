@@ -53,10 +53,10 @@ RM = /usr/local/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/percy/Projects/graphics
+CMAKE_SOURCE_DIR = /home/percy/Render
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/percy/Projects/graphics/build
+CMAKE_BINARY_DIR = /home/percy/Render/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Render.dir/depend.make
@@ -72,67 +72,161 @@ include CMakeFiles/Render.dir/flags.make
 CMakeFiles/Render.dir/src/main.cpp.o: CMakeFiles/Render.dir/flags.make
 CMakeFiles/Render.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/Render.dir/src/main.cpp.o: CMakeFiles/Render.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/percy/Projects/graphics/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Render.dir/src/main.cpp.o"
-	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Render.dir/src/main.cpp.o -MF CMakeFiles/Render.dir/src/main.cpp.o.d -o CMakeFiles/Render.dir/src/main.cpp.o -c /home/percy/Projects/graphics/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/percy/Render/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Render.dir/src/main.cpp.o"
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Render.dir/src/main.cpp.o -MF CMakeFiles/Render.dir/src/main.cpp.o.d -o CMakeFiles/Render.dir/src/main.cpp.o -c /home/percy/Render/src/main.cpp
 
 CMakeFiles/Render.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Render.dir/src/main.cpp.i"
-	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/percy/Projects/graphics/src/main.cpp > CMakeFiles/Render.dir/src/main.cpp.i
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/percy/Render/src/main.cpp > CMakeFiles/Render.dir/src/main.cpp.i
 
 CMakeFiles/Render.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Render.dir/src/main.cpp.s"
-	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/percy/Projects/graphics/src/main.cpp -o CMakeFiles/Render.dir/src/main.cpp.s
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/percy/Render/src/main.cpp -o CMakeFiles/Render.dir/src/main.cpp.s
+
+CMakeFiles/Render.dir/src/Input/Mouse/Mouse.cpp.o: CMakeFiles/Render.dir/flags.make
+CMakeFiles/Render.dir/src/Input/Mouse/Mouse.cpp.o: ../src/Input/Mouse/Mouse.cpp
+CMakeFiles/Render.dir/src/Input/Mouse/Mouse.cpp.o: CMakeFiles/Render.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/percy/Render/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Render.dir/src/Input/Mouse/Mouse.cpp.o"
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Render.dir/src/Input/Mouse/Mouse.cpp.o -MF CMakeFiles/Render.dir/src/Input/Mouse/Mouse.cpp.o.d -o CMakeFiles/Render.dir/src/Input/Mouse/Mouse.cpp.o -c /home/percy/Render/src/Input/Mouse/Mouse.cpp
+
+CMakeFiles/Render.dir/src/Input/Mouse/Mouse.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Render.dir/src/Input/Mouse/Mouse.cpp.i"
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/percy/Render/src/Input/Mouse/Mouse.cpp > CMakeFiles/Render.dir/src/Input/Mouse/Mouse.cpp.i
+
+CMakeFiles/Render.dir/src/Input/Mouse/Mouse.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Render.dir/src/Input/Mouse/Mouse.cpp.s"
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/percy/Render/src/Input/Mouse/Mouse.cpp -o CMakeFiles/Render.dir/src/Input/Mouse/Mouse.cpp.s
+
+CMakeFiles/Render.dir/src/Input/Keys/Keys.cpp.o: CMakeFiles/Render.dir/flags.make
+CMakeFiles/Render.dir/src/Input/Keys/Keys.cpp.o: ../src/Input/Keys/Keys.cpp
+CMakeFiles/Render.dir/src/Input/Keys/Keys.cpp.o: CMakeFiles/Render.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/percy/Render/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Render.dir/src/Input/Keys/Keys.cpp.o"
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Render.dir/src/Input/Keys/Keys.cpp.o -MF CMakeFiles/Render.dir/src/Input/Keys/Keys.cpp.o.d -o CMakeFiles/Render.dir/src/Input/Keys/Keys.cpp.o -c /home/percy/Render/src/Input/Keys/Keys.cpp
+
+CMakeFiles/Render.dir/src/Input/Keys/Keys.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Render.dir/src/Input/Keys/Keys.cpp.i"
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/percy/Render/src/Input/Keys/Keys.cpp > CMakeFiles/Render.dir/src/Input/Keys/Keys.cpp.i
+
+CMakeFiles/Render.dir/src/Input/Keys/Keys.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Render.dir/src/Input/Keys/Keys.cpp.s"
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/percy/Render/src/Input/Keys/Keys.cpp -o CMakeFiles/Render.dir/src/Input/Keys/Keys.cpp.s
+
+CMakeFiles/Render.dir/src/Logging/Logging.cpp.o: CMakeFiles/Render.dir/flags.make
+CMakeFiles/Render.dir/src/Logging/Logging.cpp.o: ../src/Logging/Logging.cpp
+CMakeFiles/Render.dir/src/Logging/Logging.cpp.o: CMakeFiles/Render.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/percy/Render/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Render.dir/src/Logging/Logging.cpp.o"
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Render.dir/src/Logging/Logging.cpp.o -MF CMakeFiles/Render.dir/src/Logging/Logging.cpp.o.d -o CMakeFiles/Render.dir/src/Logging/Logging.cpp.o -c /home/percy/Render/src/Logging/Logging.cpp
+
+CMakeFiles/Render.dir/src/Logging/Logging.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Render.dir/src/Logging/Logging.cpp.i"
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/percy/Render/src/Logging/Logging.cpp > CMakeFiles/Render.dir/src/Logging/Logging.cpp.i
+
+CMakeFiles/Render.dir/src/Logging/Logging.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Render.dir/src/Logging/Logging.cpp.s"
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/percy/Render/src/Logging/Logging.cpp -o CMakeFiles/Render.dir/src/Logging/Logging.cpp.s
+
+CMakeFiles/Render.dir/src/Memory/VBO.cpp.o: CMakeFiles/Render.dir/flags.make
+CMakeFiles/Render.dir/src/Memory/VBO.cpp.o: ../src/Memory/VBO.cpp
+CMakeFiles/Render.dir/src/Memory/VBO.cpp.o: CMakeFiles/Render.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/percy/Render/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Render.dir/src/Memory/VBO.cpp.o"
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Render.dir/src/Memory/VBO.cpp.o -MF CMakeFiles/Render.dir/src/Memory/VBO.cpp.o.d -o CMakeFiles/Render.dir/src/Memory/VBO.cpp.o -c /home/percy/Render/src/Memory/VBO.cpp
+
+CMakeFiles/Render.dir/src/Memory/VBO.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Render.dir/src/Memory/VBO.cpp.i"
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/percy/Render/src/Memory/VBO.cpp > CMakeFiles/Render.dir/src/Memory/VBO.cpp.i
+
+CMakeFiles/Render.dir/src/Memory/VBO.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Render.dir/src/Memory/VBO.cpp.s"
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/percy/Render/src/Memory/VBO.cpp -o CMakeFiles/Render.dir/src/Memory/VBO.cpp.s
+
+CMakeFiles/Render.dir/src/Memory/VAO.cpp.o: CMakeFiles/Render.dir/flags.make
+CMakeFiles/Render.dir/src/Memory/VAO.cpp.o: ../src/Memory/VAO.cpp
+CMakeFiles/Render.dir/src/Memory/VAO.cpp.o: CMakeFiles/Render.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/percy/Render/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Render.dir/src/Memory/VAO.cpp.o"
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Render.dir/src/Memory/VAO.cpp.o -MF CMakeFiles/Render.dir/src/Memory/VAO.cpp.o.d -o CMakeFiles/Render.dir/src/Memory/VAO.cpp.o -c /home/percy/Render/src/Memory/VAO.cpp
+
+CMakeFiles/Render.dir/src/Memory/VAO.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Render.dir/src/Memory/VAO.cpp.i"
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/percy/Render/src/Memory/VAO.cpp > CMakeFiles/Render.dir/src/Memory/VAO.cpp.i
+
+CMakeFiles/Render.dir/src/Memory/VAO.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Render.dir/src/Memory/VAO.cpp.s"
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/percy/Render/src/Memory/VAO.cpp -o CMakeFiles/Render.dir/src/Memory/VAO.cpp.s
+
+CMakeFiles/Render.dir/src/Shaders/Shader.cpp.o: CMakeFiles/Render.dir/flags.make
+CMakeFiles/Render.dir/src/Shaders/Shader.cpp.o: ../src/Shaders/Shader.cpp
+CMakeFiles/Render.dir/src/Shaders/Shader.cpp.o: CMakeFiles/Render.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/percy/Render/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Render.dir/src/Shaders/Shader.cpp.o"
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Render.dir/src/Shaders/Shader.cpp.o -MF CMakeFiles/Render.dir/src/Shaders/Shader.cpp.o.d -o CMakeFiles/Render.dir/src/Shaders/Shader.cpp.o -c /home/percy/Render/src/Shaders/Shader.cpp
+
+CMakeFiles/Render.dir/src/Shaders/Shader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Render.dir/src/Shaders/Shader.cpp.i"
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/percy/Render/src/Shaders/Shader.cpp > CMakeFiles/Render.dir/src/Shaders/Shader.cpp.i
+
+CMakeFiles/Render.dir/src/Shaders/Shader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Render.dir/src/Shaders/Shader.cpp.s"
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/percy/Render/src/Shaders/Shader.cpp -o CMakeFiles/Render.dir/src/Shaders/Shader.cpp.s
+
+CMakeFiles/Render.dir/src/Shaders/Program.cpp.o: CMakeFiles/Render.dir/flags.make
+CMakeFiles/Render.dir/src/Shaders/Program.cpp.o: ../src/Shaders/Program.cpp
+CMakeFiles/Render.dir/src/Shaders/Program.cpp.o: CMakeFiles/Render.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/percy/Render/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Render.dir/src/Shaders/Program.cpp.o"
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Render.dir/src/Shaders/Program.cpp.o -MF CMakeFiles/Render.dir/src/Shaders/Program.cpp.o.d -o CMakeFiles/Render.dir/src/Shaders/Program.cpp.o -c /home/percy/Render/src/Shaders/Program.cpp
+
+CMakeFiles/Render.dir/src/Shaders/Program.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Render.dir/src/Shaders/Program.cpp.i"
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/percy/Render/src/Shaders/Program.cpp > CMakeFiles/Render.dir/src/Shaders/Program.cpp.i
+
+CMakeFiles/Render.dir/src/Shaders/Program.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Render.dir/src/Shaders/Program.cpp.s"
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/percy/Render/src/Shaders/Program.cpp -o CMakeFiles/Render.dir/src/Shaders/Program.cpp.s
 
 CMakeFiles/Render.dir/src/Window/Window.cpp.o: CMakeFiles/Render.dir/flags.make
 CMakeFiles/Render.dir/src/Window/Window.cpp.o: ../src/Window/Window.cpp
 CMakeFiles/Render.dir/src/Window/Window.cpp.o: CMakeFiles/Render.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/percy/Projects/graphics/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Render.dir/src/Window/Window.cpp.o"
-	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Render.dir/src/Window/Window.cpp.o -MF CMakeFiles/Render.dir/src/Window/Window.cpp.o.d -o CMakeFiles/Render.dir/src/Window/Window.cpp.o -c /home/percy/Projects/graphics/src/Window/Window.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/percy/Render/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Render.dir/src/Window/Window.cpp.o"
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Render.dir/src/Window/Window.cpp.o -MF CMakeFiles/Render.dir/src/Window/Window.cpp.o.d -o CMakeFiles/Render.dir/src/Window/Window.cpp.o -c /home/percy/Render/src/Window/Window.cpp
 
 CMakeFiles/Render.dir/src/Window/Window.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Render.dir/src/Window/Window.cpp.i"
-	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/percy/Projects/graphics/src/Window/Window.cpp > CMakeFiles/Render.dir/src/Window/Window.cpp.i
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/percy/Render/src/Window/Window.cpp > CMakeFiles/Render.dir/src/Window/Window.cpp.i
 
 CMakeFiles/Render.dir/src/Window/Window.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Render.dir/src/Window/Window.cpp.s"
-	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/percy/Projects/graphics/src/Window/Window.cpp -o CMakeFiles/Render.dir/src/Window/Window.cpp.s
-
-CMakeFiles/Render.dir/src/Window/Mouse/Mouse.cpp.o: CMakeFiles/Render.dir/flags.make
-CMakeFiles/Render.dir/src/Window/Mouse/Mouse.cpp.o: ../src/Window/Mouse/Mouse.cpp
-CMakeFiles/Render.dir/src/Window/Mouse/Mouse.cpp.o: CMakeFiles/Render.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/percy/Projects/graphics/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Render.dir/src/Window/Mouse/Mouse.cpp.o"
-	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Render.dir/src/Window/Mouse/Mouse.cpp.o -MF CMakeFiles/Render.dir/src/Window/Mouse/Mouse.cpp.o.d -o CMakeFiles/Render.dir/src/Window/Mouse/Mouse.cpp.o -c /home/percy/Projects/graphics/src/Window/Mouse/Mouse.cpp
-
-CMakeFiles/Render.dir/src/Window/Mouse/Mouse.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Render.dir/src/Window/Mouse/Mouse.cpp.i"
-	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/percy/Projects/graphics/src/Window/Mouse/Mouse.cpp > CMakeFiles/Render.dir/src/Window/Mouse/Mouse.cpp.i
-
-CMakeFiles/Render.dir/src/Window/Mouse/Mouse.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Render.dir/src/Window/Mouse/Mouse.cpp.s"
-	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/percy/Projects/graphics/src/Window/Mouse/Mouse.cpp -o CMakeFiles/Render.dir/src/Window/Mouse/Mouse.cpp.s
+	/bin/x86_64-linux-gnu-g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/percy/Render/src/Window/Window.cpp -o CMakeFiles/Render.dir/src/Window/Window.cpp.s
 
 # Object files for target Render
 Render_OBJECTS = \
 "CMakeFiles/Render.dir/src/main.cpp.o" \
-"CMakeFiles/Render.dir/src/Window/Window.cpp.o" \
-"CMakeFiles/Render.dir/src/Window/Mouse/Mouse.cpp.o"
+"CMakeFiles/Render.dir/src/Input/Mouse/Mouse.cpp.o" \
+"CMakeFiles/Render.dir/src/Input/Keys/Keys.cpp.o" \
+"CMakeFiles/Render.dir/src/Logging/Logging.cpp.o" \
+"CMakeFiles/Render.dir/src/Memory/VBO.cpp.o" \
+"CMakeFiles/Render.dir/src/Memory/VAO.cpp.o" \
+"CMakeFiles/Render.dir/src/Shaders/Shader.cpp.o" \
+"CMakeFiles/Render.dir/src/Shaders/Program.cpp.o" \
+"CMakeFiles/Render.dir/src/Window/Window.cpp.o"
 
 # External object files for target Render
 Render_EXTERNAL_OBJECTS =
 
 Render: CMakeFiles/Render.dir/src/main.cpp.o
+Render: CMakeFiles/Render.dir/src/Input/Mouse/Mouse.cpp.o
+Render: CMakeFiles/Render.dir/src/Input/Keys/Keys.cpp.o
+Render: CMakeFiles/Render.dir/src/Logging/Logging.cpp.o
+Render: CMakeFiles/Render.dir/src/Memory/VBO.cpp.o
+Render: CMakeFiles/Render.dir/src/Memory/VAO.cpp.o
+Render: CMakeFiles/Render.dir/src/Shaders/Shader.cpp.o
+Render: CMakeFiles/Render.dir/src/Shaders/Program.cpp.o
 Render: CMakeFiles/Render.dir/src/Window/Window.cpp.o
-Render: CMakeFiles/Render.dir/src/Window/Mouse/Mouse.cpp.o
 Render: CMakeFiles/Render.dir/build.make
 Render: /opt/vcpkg/installed/x64-linux/debug/lib/libglad.a
 Render: /opt/vcpkg/installed/x64-linux/debug/lib/libglfw3.a
-Render: /usr/lib/x86_64-linux-gnu/libspdlog.so.1.8.1
 Render: /usr/lib/x86_64-linux-gnu/librt.so
 Render: /usr/lib/x86_64-linux-gnu/libm.so
 Render: /usr/lib/x86_64-linux-gnu/libX11.so
-Render: /usr/lib/x86_64-linux-gnu/libfmt.so.7.1.3
 Render: CMakeFiles/Render.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/percy/Projects/graphics/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable Render"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/percy/Render/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable Render"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Render.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -144,6 +238,6 @@ CMakeFiles/Render.dir/clean:
 .PHONY : CMakeFiles/Render.dir/clean
 
 CMakeFiles/Render.dir/depend:
-	cd /home/percy/Projects/graphics/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/percy/Projects/graphics /home/percy/Projects/graphics /home/percy/Projects/graphics/build /home/percy/Projects/graphics/build /home/percy/Projects/graphics/build/CMakeFiles/Render.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/percy/Render/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/percy/Render /home/percy/Render /home/percy/Render/build /home/percy/Render/build /home/percy/Render/build/CMakeFiles/Render.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Render.dir/depend
 

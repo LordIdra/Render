@@ -1,6 +1,6 @@
-CMakeFiles/Render.dir/src/Window/Window.cpp.o: \
- /home/percy/Render/src/Window/Window.cpp /usr/include/stdc-predef.h \
- /home/percy/Render/src/Window/Window.h \
+CMakeFiles/Render.dir/src/Memory/VAO.cpp.o: \
+ /home/percy/Render/src/Memory/VAO.cpp /usr/include/stdc-predef.h \
+ /home/percy/Render/src/Memory/VAO.h \
  /opt/vcpkg/installed/x64-linux/include/glad/glad.h \
  /opt/vcpkg/installed/x64-linux/include/KHR/khrplatform.h \
  /usr/lib/gcc/x86_64-linux-gnu/10/include/stdint.h /usr/include/stdint.h \
@@ -19,8 +19,7 @@ CMakeFiles/Render.dir/src/Window/Window.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /opt/vcpkg/installed/x64-linux/include/GLFW/glfw3.h \
  /usr/lib/gcc/x86_64-linux-gnu/10/include/stddef.h \
- /home/percy/Render/src/Window/../Logging/Logging.h \
- /usr/include/c++/10/iostream \
+ /home/percy/Render/src/Memory/VBO.h /usr/include/c++/10/iostream \
  /usr/include/x86_64-linux-gnu/c++/10/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/10/bits/os_defines.h \
  /usr/include/x86_64-linux-gnu/c++/10/bits/cpu_defines.h \
@@ -145,6 +144,4 @@ CMakeFiles/Render.dir/src/Window/Window.cpp.o: \
  /usr/include/c++/10/bits/locale_facets.tcc \
  /usr/include/c++/10/bits/basic_ios.tcc \
  /usr/include/c++/10/bits/ostream.tcc /usr/include/c++/10/istream \
- /usr/include/c++/10/bits/istream.tcc \
- /home/percy/Render/src/Window/../Input/Mouse/Mouse.h \
- /home/percy/Render/src/Window/../Input/Keys/Keys.h
+ /usr/include/c++/10/bits/istream.tcc

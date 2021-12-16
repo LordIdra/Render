@@ -1,47 +1,47 @@
 [
 {
-  "directory": "/home/percy/Projects/graphics/build",
-  "command": "/bin/x86_64-linux-gnu-g++-10  -isystem /opt/vcpkg/installed/x64-linux/include -g -o CMakeFiles/Graphics.dir/src/main.cpp.o -c /home/percy/Projects/graphics/src/main.cpp",
-  "file": "/home/percy/Projects/graphics/src/main.cpp"
+  "directory": "/home/percy/Render/build",
+  "command": "/bin/x86_64-linux-gnu-g++-10  -isystem /opt/vcpkg/installed/x64-linux/include -g -o CMakeFiles/Render.dir/src/main.cpp.o -c /home/percy/Render/src/main.cpp",
+  "file": "/home/percy/Render/src/main.cpp"
 },
 {
-  "directory": "/home/percy/Projects/graphics/build",
-  "command": "/bin/x86_64-linux-gnu-g++-10  -isystem /opt/vcpkg/installed/x64-linux/include -g -o CMakeFiles/Graphics.dir/src/Input/Mouse/Mouse.cpp.o -c /home/percy/Projects/graphics/src/Input/Mouse/Mouse.cpp",
-  "file": "/home/percy/Projects/graphics/src/Input/Mouse/Mouse.cpp"
+  "directory": "/home/percy/Render/build",
+  "command": "/bin/x86_64-linux-gnu-g++-10  -isystem /opt/vcpkg/installed/x64-linux/include -g -o CMakeFiles/Render.dir/src/Input/Mouse/Mouse.cpp.o -c /home/percy/Render/src/Input/Mouse/Mouse.cpp",
+  "file": "/home/percy/Render/src/Input/Mouse/Mouse.cpp"
 },
 {
-  "directory": "/home/percy/Projects/graphics/build",
-  "command": "/bin/x86_64-linux-gnu-g++-10  -isystem /opt/vcpkg/installed/x64-linux/include -g -o CMakeFiles/Graphics.dir/src/Input/Keys/Keys.cpp.o -c /home/percy/Projects/graphics/src/Input/Keys/Keys.cpp",
-  "file": "/home/percy/Projects/graphics/src/Input/Keys/Keys.cpp"
+  "directory": "/home/percy/Render/build",
+  "command": "/bin/x86_64-linux-gnu-g++-10  -isystem /opt/vcpkg/installed/x64-linux/include -g -o CMakeFiles/Render.dir/src/Input/Keys/Keys.cpp.o -c /home/percy/Render/src/Input/Keys/Keys.cpp",
+  "file": "/home/percy/Render/src/Input/Keys/Keys.cpp"
 },
 {
-  "directory": "/home/percy/Projects/graphics/build",
-  "command": "/bin/x86_64-linux-gnu-g++-10  -isystem /opt/vcpkg/installed/x64-linux/include -g -o CMakeFiles/Graphics.dir/src/Logging/Logging.cpp.o -c /home/percy/Projects/graphics/src/Logging/Logging.cpp",
-  "file": "/home/percy/Projects/graphics/src/Logging/Logging.cpp"
+  "directory": "/home/percy/Render/build",
+  "command": "/bin/x86_64-linux-gnu-g++-10  -isystem /opt/vcpkg/installed/x64-linux/include -g -o CMakeFiles/Render.dir/src/Logging/Logging.cpp.o -c /home/percy/Render/src/Logging/Logging.cpp",
+  "file": "/home/percy/Render/src/Logging/Logging.cpp"
 },
 {
-  "directory": "/home/percy/Projects/graphics/build",
-  "command": "/bin/x86_64-linux-gnu-g++-10  -isystem /opt/vcpkg/installed/x64-linux/include -g -o CMakeFiles/Graphics.dir/src/Memory/VBO.cpp.o -c /home/percy/Projects/graphics/src/Memory/VBO.cpp",
-  "file": "/home/percy/Projects/graphics/src/Memory/VBO.cpp"
+  "directory": "/home/percy/Render/build",
+  "command": "/bin/x86_64-linux-gnu-g++-10  -isystem /opt/vcpkg/installed/x64-linux/include -g -o CMakeFiles/Render.dir/src/Memory/VBO.cpp.o -c /home/percy/Render/src/Memory/VBO.cpp",
+  "file": "/home/percy/Render/src/Memory/VBO.cpp"
 },
 {
-  "directory": "/home/percy/Projects/graphics/build",
-  "command": "/bin/x86_64-linux-gnu-g++-10  -isystem /opt/vcpkg/installed/x64-linux/include -g -o CMakeFiles/Graphics.dir/src/Memory/VAO.cpp.o -c /home/percy/Projects/graphics/src/Memory/VAO.cpp",
-  "file": "/home/percy/Projects/graphics/src/Memory/VAO.cpp"
+  "directory": "/home/percy/Render/build",
+  "command": "/bin/x86_64-linux-gnu-g++-10  -isystem /opt/vcpkg/installed/x64-linux/include -g -o CMakeFiles/Render.dir/src/Memory/VAO.cpp.o -c /home/percy/Render/src/Memory/VAO.cpp",
+  "file": "/home/percy/Render/src/Memory/VAO.cpp"
 },
 {
-  "directory": "/home/percy/Projects/graphics/build",
-  "command": "/bin/x86_64-linux-gnu-g++-10  -isystem /opt/vcpkg/installed/x64-linux/include -g -o CMakeFiles/Graphics.dir/src/Shaders/Shader.cpp.o -c /home/percy/Projects/graphics/src/Shaders/Shader.cpp",
-  "file": "/home/percy/Projects/graphics/src/Shaders/Shader.cpp"
+  "directory": "/home/percy/Render/build",
+  "command": "/bin/x86_64-linux-gnu-g++-10  -isystem /opt/vcpkg/installed/x64-linux/include -g -o CMakeFiles/Render.dir/src/Shaders/Shader.cpp.o -c /home/percy/Render/src/Shaders/Shader.cpp",
+  "file": "/home/percy/Render/src/Shaders/Shader.cpp"
 },
 {
-  "directory": "/home/percy/Projects/graphics/build",
-  "command": "/bin/x86_64-linux-gnu-g++-10  -isystem /opt/vcpkg/installed/x64-linux/include -g -o CMakeFiles/Graphics.dir/src/Shaders/Program.cpp.o -c /home/percy/Projects/graphics/src/Shaders/Program.cpp",
-  "file": "/home/percy/Projects/graphics/src/Shaders/Program.cpp"
+  "directory": "/home/percy/Render/build",
+  "command": "/bin/x86_64-linux-gnu-g++-10  -isystem /opt/vcpkg/installed/x64-linux/include -g -o CMakeFiles/Render.dir/src/Shaders/Program.cpp.o -c /home/percy/Render/src/Shaders/Program.cpp",
+  "file": "/home/percy/Render/src/Shaders/Program.cpp"
 },
 {
-  "directory": "/home/percy/Projects/graphics/build",
-  "command": "/bin/x86_64-linux-gnu-g++-10  -isystem /opt/vcpkg/installed/x64-linux/include -g -o CMakeFiles/Graphics.dir/src/Window/Window.cpp.o -c /home/percy/Projects/graphics/src/Window/Window.cpp",
-  "file": "/home/percy/Projects/graphics/src/Window/Window.cpp"
+  "directory": "/home/percy/Render/build",
+  "command": "/bin/x86_64-linux-gnu-g++-10  -isystem /opt/vcpkg/installed/x64-linux/include -g -o CMakeFiles/Render.dir/src/Window/Window.cpp.o -c /home/percy/Render/src/Window/Window.cpp",
+  "file": "/home/percy/Render/src/Window/Window.cpp"
 }
 ]
