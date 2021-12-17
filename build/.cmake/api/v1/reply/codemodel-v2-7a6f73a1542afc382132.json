@@ -6,7 +6,6 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.0.0"
@@ -39,7 +38,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Render::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Render-Debug-b03a92608dd2dcde49e3.json",
+					"jsonFile" : "target-Render-Debug-cbebb9545c171d91ecd1.json",
 					"name" : "Render",
 					"projectIndex" : 0
 				}
@@ -49,12 +48,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/percy/Render/build",
-		"source" : "/home/percy/Render"
+		"build" : "/home/idra/Render/build",
+		"source" : "/home/idra/Render"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 3
+		"minor" : 0
 	}
 }

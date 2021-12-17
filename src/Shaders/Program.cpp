@@ -20,7 +20,7 @@ void Program::Link() {
     if (!linkStatus) {
         char linkLog[512];
         glGetProgramInfoLog(id, 512, NULL, linkLog);
-        Logging::Info("Shader at failed to link: " + string(linkLog));
+        Logging::Info("Program failed to link: " + string(linkLog));
     }
 }
 

@@ -3,40 +3,30 @@
 	{
 		"generator" : 
 		{
-			"multiConfig" : false,
 			"name" : "Unix Makefiles"
 		},
 		"paths" : 
 		{
-			"cmake" : "/usr/local/bin/cmake",
-			"cpack" : "/usr/local/bin/cpack",
-			"ctest" : "/usr/local/bin/ctest",
-			"root" : "/usr/local/share/cmake-3.22"
+			"cmake" : "/usr/bin/cmake",
+			"cpack" : "/usr/bin/cpack",
+			"ctest" : "/usr/bin/ctest",
+			"root" : "/usr/share/cmake-3.16"
 		},
 		"version" : 
 		{
 			"isDirty" : false,
 			"major" : 3,
-			"minor" : 22,
-			"patch" : 1,
-			"string" : "3.22.1",
+			"minor" : 16,
+			"patch" : 3,
+			"string" : "3.16.3",
 			"suffix" : ""
 		}
 	},
 	"objects" : 
 	[
 		{
-			"jsonFile" : "codemodel-v2-9bc0cc3b87f1c30d0a9c.json",
+			"jsonFile" : "codemodel-v2-7a6f73a1542afc382132.json",
 			"kind" : "codemodel",
-			"version" : 
-			{
-				"major" : 2,
-				"minor" : 3
-			}
-		},
-		{
-			"jsonFile" : "cache-v2-d6bcbe6b72b856cdb31b.json",
-			"kind" : "cache",
 			"version" : 
 			{
 				"major" : 2,
@@ -44,11 +34,11 @@
 			}
 		},
 		{
-			"jsonFile" : "toolchains-v1-55b9edad2d9eb07cb709.json",
-			"kind" : "toolchains",
+			"jsonFile" : "cache-v2-962d26349e82d5c7d67a.json",
+			"kind" : "cache",
 			"version" : 
 			{
-				"major" : 1,
+				"major" : 2,
 				"minor" : 0
 			}
 		}
@@ -77,7 +67,7 @@
 				"responses" : 
 				[
 					{
-						"jsonFile" : "cache-v2-d6bcbe6b72b856cdb31b.json",
+						"jsonFile" : "cache-v2-962d26349e82d5c7d67a.json",
 						"kind" : "cache",
 						"version" : 
 						{
@@ -86,22 +76,16 @@
 						}
 					},
 					{
-						"jsonFile" : "codemodel-v2-9bc0cc3b87f1c30d0a9c.json",
+						"jsonFile" : "codemodel-v2-7a6f73a1542afc382132.json",
 						"kind" : "codemodel",
 						"version" : 
 						{
 							"major" : 2,
-							"minor" : 3
+							"minor" : 0
 						}
 					},
 					{
-						"jsonFile" : "toolchains-v1-55b9edad2d9eb07cb709.json",
-						"kind" : "toolchains",
-						"version" : 
-						{
-							"major" : 1,
-							"minor" : 0
-						}
+						"error" : "unknown request kind 'toolchains'"
 					}
 				]
 			}

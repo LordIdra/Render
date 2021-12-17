@@ -1,7 +1,17 @@
 #include "Shader.h"
 
 
+bool exists(const std::string path) {
+   ifstream file;
+   file.open(path);
+   return bool(file);
+}
+
+
 const char* Shader::ReadFile(string path) {
+    if (!exists(path)) {
+        Logging::Info("File not found: " + path);
+    }
     ifstream file(path);
     stringstream sourceBuffer;
     sourceBuffer << file.rdbuf();
@@ -22,6 +32,8 @@ void Shader::CheckCompile(string path) {
 Shader::Shader(string path, unsigned int type) {
     id = glCreateShader(type);
     const char* source = ReadFile(path);
+    Logging::Info(path);
+    Logging::Info(source);
     glShaderSource(id, 1, &source, NULL);
     glCompileShader(id);
     CheckCompile(path);

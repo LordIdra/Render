@@ -4,8 +4,8 @@
 
 const int Window::Detail::SAMPLES = 4;
 const char* Window::Detail::NAME = "Test";
-const int Window::Detail::MAJOR_VERSION = 4;
-const int Window::Detail::MINOR_VERSION = 4;
+const int Window::Detail::MAJOR_VERSION = 3;
+const int Window::Detail::MINOR_VERSION = 3;
 
 GLFWmonitor* Window::Detail::monitor;
 GLFWwindow* Window::Detail::window;
