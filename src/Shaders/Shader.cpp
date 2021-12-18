@@ -1,25 +1,35 @@
 #include "Shader.h"
 
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#include <filesystem>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include "../Logging/Logging.h"
 
-bool exists(const std::string path) {
-   ifstream file;
+
+
+bool exists(std::string path) {
+   std::ifstream file;
    file.open(path);
    return bool(file);
 }
 
 
-const char* Shader::ReadFile(string path) {
+std::string Shader::ReadFile(std::string path) const {
     if (!exists(path)) {
         Logging::Info("File not found: " + path);
     }
-    ifstream file(path);
-    stringstream sourceBuffer;
+    std::ifstream file(path);
+    std::stringstream sourceBuffer;
     sourceBuffer << file.rdbuf();
     file.close();
-    return sourceBuffer.str().c_str();
+    Logging::Info(sourceBuffer.str());
+    return sourceBuffer.str();
 }
 
-void Shader::CheckCompile(string path) {
+void Shader::CheckCompile(std::string path) const {
     int compileStatus;
     glGetShaderiv(compileStatus, GL_COMPILE_STATUS, &compileStatus);
     if (!compileStatus) {
@@ -29,9 +39,9 @@ void Shader::CheckCompile(string path) {
     }
 }
 
-Shader::Shader(string path, unsigned int type) {
-    id = glCreateShader(type);
-    const char* source = ReadFile(path);
+Shader::Shader(std::string path, unsigned int type)
+    : type(type), id(glCreateShader(type)) {
+    const char *source = ReadFile(path).c_str();
     Logging::Info(path);
     Logging::Info(source);
     glShaderSource(id, 1, &source, NULL);
@@ -39,10 +49,10 @@ Shader::Shader(string path, unsigned int type) {
     CheckCompile(path);
 }
 
-void Shader::Attach() {
+void Shader::Attach() const {
     glAttachShader(id, type);
 }
 
-void Shader::Delete() {
+void Shader::Delete() const {
     glDeleteShader(id);
 }

@@ -2,11 +2,6 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "../Logging/Logging.h"
-#include "../Input/Mouse/Mouse.h"
-#include "../Input/Keys/Keys.h"
-
-using namespace std;
 
 
 
@@ -14,13 +9,13 @@ namespace Window {
 
     namespace Detail {
         extern const int SAMPLES;
-        extern const char* NAME;
+        extern const char *NAME;
         extern const int MAJOR_VERSION;
         extern const int MINOR_VERSION;
 
-        extern GLFWmonitor* monitor;
-        extern GLFWwindow* window;
-        extern const GLFWvidmode* mode;
+        extern GLFWmonitor *monitor;
+        extern GLFWwindow *window;
+        extern const GLFWvidmode *mode;
 
         extern int width;
         extern int height;
@@ -34,7 +29,7 @@ namespace Window {
 
     void Initialize();
     void Clear();
-    void Background(float r, float g, float b, float a);
+    void Background(const float r, const float g, const float b, const float a);
     void SwapBuffers();
     void PollEvents();
     void UpdateTime();

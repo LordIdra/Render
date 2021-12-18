@@ -1,15 +1,19 @@
 #include "Window.h"
 
+#include "../Logging/Logging.h"
+#include "../Input/Mouse/Mouse.h"
+#include "../Input/Keys/Keys.h"
+
 
 
 const int Window::Detail::SAMPLES = 4;
-const char* Window::Detail::NAME = "Test";
+const char *Window::Detail::NAME = "Test";
 const int Window::Detail::MAJOR_VERSION = 3;
 const int Window::Detail::MINOR_VERSION = 3;
 
-GLFWmonitor* Window::Detail::monitor;
-GLFWwindow* Window::Detail::window;
-const GLFWvidmode* Window::Detail::mode;
+GLFWmonitor *Window::Detail::monitor;
+GLFWwindow *Window::Detail::window;
+const GLFWvidmode *Window::Detail::mode;
 
 int Window::Detail::width;
 int Window::Detail::height;

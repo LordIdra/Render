@@ -1,26 +1,19 @@
 #pragma once
 
-#include <iostream>
-#include <sstream>
-#include <fstream>
-#include <filesystem>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include "../Logging/Logging.h"
+#include <string>
 
-using namespace std;
 
 
 class Shader {
 private:
-    unsigned int id;
-    unsigned int type;
+    const unsigned int id;
+    const unsigned int type;
 
-    const char* ReadFile(string path);
-    void CheckCompile(string path);
+    std::string ReadFile(std::string path) const;
+    void CheckCompile(std::string path) const;
 
 public:
-    Shader(string path, unsigned int type);
-    void Attach();
-    void Delete();
+    Shader(std::string path, unsigned int type);
+    void Attach() const;
+    void Delete() const;
 };

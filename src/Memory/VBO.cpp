@@ -1,5 +1,10 @@
 #include "VBO.h"
 
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
+
+
 VBO::VBO() {}
 
 void VBO::Init() {
@@ -10,15 +15,15 @@ void VBO::Init() {
     glGenBuffers(1, &vbo);
 }
 
-void VBO::Bind() {
+void VBO::Bind() const {
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
 }
 
-void VBO::Unbind() {
+void VBO::Unbind() const {
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-void VBO::Data(const float* data, int size) {
+void VBO::Data(float *data, int size) const {
     glBufferData(GL_ARRAY_BUFFER, sizeof(data), data, GL_STATIC_DRAW);
 }
 

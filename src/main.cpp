@@ -1,15 +1,20 @@
 #include <memory>
+#include "Input/Keys/Keys.h"
+#include "Input/Mouse/Mouse.h"
 #include "Window/Window.h"
 #include "Memory/VAO.h"
 #include "Shaders/Program.h"
 
+
+
 VAO vao;
 Program program;
-const float vertices[] = {
+float vertices[] = {
     -0.5f, -0.5f, 0.0f,
     0.5f, -0.5f, 0.0f,
     0.0f, 0.5f, 0.0f
 };
+
 
 
 void CreateTriangle() {
@@ -60,7 +65,6 @@ void Mainloop() {
 }
 
 int main() {
-    std::cout << "HELLO";
     Initialize();
     Mainloop();
 }

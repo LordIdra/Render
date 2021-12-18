@@ -1,8 +1,7 @@
 #pragma once
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
 #include "VBO.h"
+
 
 
 class VAO {
@@ -13,8 +12,8 @@ private:
 public:
     VAO();
     void Init();
-    void Bind();
-    void Unbind();
-    void AddVertexAttribute(unsigned int index, int size, unsigned int type, unsigned char normalised, int stride, const void* offset);
-    void Data(const float* data, int size);
+    void Bind() const;
+    void Unbind() const;
+    void AddVertexAttribute(unsigned int index,  int size,  unsigned int type,  unsigned char normalised,  int stride,  void *offset) const;
+    void Data( float *data,  int size) const;
 };

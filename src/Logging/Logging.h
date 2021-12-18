@@ -1,10 +1,9 @@
 #pragma once
 
-#include <iostream>
+#include <string>
 
-using namespace std;
 
 
 namespace Logging {
-    void Info(string);
+    void Info(std::string);
 }

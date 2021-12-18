@@ -1,7 +1,5 @@
 #pragma once
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
 
 
 class VBO {
@@ -12,7 +10,7 @@ private:
 public:
     VBO();
     void Init();
-    void Bind();
-    void Unbind();
-    void Data(const float* data, int size);
+    void Bind() const;
+    void Unbind() const;
+    void Data(float *data, int size) const;
 };

@@ -3,6 +3,7 @@
 #include "Shader.h"
 
 
+
 class Program {
 private:
     int id;
@@ -10,7 +11,7 @@ private:
 public:
     Program();
     void Init();
-    void AddShader(Shader shader);
-    void Link();
-    void Use();
+    void AddShader(Shader shader) const;
+    void Link() const;
+    void Use() const;
 };

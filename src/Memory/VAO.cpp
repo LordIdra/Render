@@ -1,5 +1,10 @@
 #include "VAO.h"
+
 #include <iostream>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
+
 
 VAO::VAO() {}
 
@@ -15,20 +20,20 @@ void VAO::Init() {
     vbo.Unbind();
 }
 
-void VAO::Bind() {
+void VAO::Bind() const {
     glBindVertexArray(vao);
 }
 
-void VAO::Unbind() {
+void VAO::Unbind() const {
     glBindVertexArray(0);
 }
 
-void VAO::AddVertexAttribute(unsigned int index, int size, unsigned int type, unsigned char normalised, int stride, const void* offset) {
+void VAO::AddVertexAttribute(unsigned int index, int size, unsigned int type, unsigned char normalised, int stride, void *offset) const {
     glVertexAttribPointer(index, size, type, normalised, stride, offset);
     glEnableVertexAttribArray(index);
 }
 
-void VAO::Data(const float* data, int size) {
+void VAO::Data(float *data, int size) const {
     Bind();
     vbo.Data(data, size);
 }
