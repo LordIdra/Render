@@ -1,5 +1,6 @@
 #include "VAO.h"
-#include <iostream>
+#include "../Logging/Logging.h"
+
 
 VAO::VAO() {}
 
@@ -7,28 +8,32 @@ void VAO::Init() {
     // Why does this exist? The reason is that if this was in the constructor, forward-declaring a variable
     // of type VAO would initialize that variable. Therefore, if we defined something like VAO vao; in the
     // main file, it would try to call the constructor before main() is called, so GLAD has not had a chance
-    // to initialize and the glxxxx() commands would cause segmentation faults
-    glGenVertexArrays(1, &vao);
-    vbo.Bind();
+    // to initialize and the glxxxx() commands would cause segmentation faults, which is NOT fun.
+    glGenVertexArrays(1, &id);
+    Bind();
     vbo = VBO();
+    vbo.Init();
+    vbo.Bind();
     Unbind();
-    vbo.Unbind();
 }
 
-void VAO::Bind() {
-    glBindVertexArray(vao);
+void VAO::Bind() const {
+    glBindVertexArray(id);
 }
 
-void VAO::Unbind() {
+void VAO::Unbind() const {
     glBindVertexArray(0);
 }
 
-void VAO::AddVertexAttribute(unsigned int index, int size, unsigned int type, unsigned char normalised, int stride, const void* offset) {
-    glVertexAttribPointer(index, size, type, normalised, stride, offset);
-    glEnableVertexAttribArray(index);
+void VAO::AddVertexAttribute(const VertexAttribute &attribute) const {
+    Bind();
+    glVertexAttribPointer(attribute.index, attribute.size, attribute.type, attribute.normalised, attribute.stride, attribute.offset);
+    glEnableVertexAttribArray(attribute.index);
+    Unbind();
 }
 
-void VAO::Data(const float* data, int size) {
+void VAO::Data(const std::vector<float> &data) const {
     Bind();
-    vbo.Data(data, size);
+    glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof(float), &data[0], GL_STATIC_DRAW);
+    Unbind();
 }

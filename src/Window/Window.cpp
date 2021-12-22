@@ -1,15 +1,14 @@
 #include "Window.h"
 
+#include "../Logging/Logging.h"
+#include "../Input/Mouse/Mouse.h"
+#include "../Input/Keys/Keys.h"
 
 
-const int Window::Detail::SAMPLES = 4;
-const char* Window::Detail::NAME = "Test";
-const int Window::Detail::MAJOR_VERSION = 3;
-const int Window::Detail::MINOR_VERSION = 3;
 
-GLFWmonitor* Window::Detail::monitor;
-GLFWwindow* Window::Detail::window;
-const GLFWvidmode* Window::Detail::mode;
+GLFWmonitor *Window::Detail::monitor;
+GLFWwindow *Window::Detail::window;
+const GLFWvidmode *Window::Detail::mode;
 
 int Window::Detail::width;
 int Window::Detail::height;
@@ -17,17 +16,52 @@ int Window::Detail::deltaTime = 0;
 
 
 
+void Window::Detail::SetVersionHints() {
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, MAJOR_VERSION);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, MINOR_VERSION);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+}
+
+void Window::Detail::AcquireMonitor() {
+    monitor = glfwGetPrimaryMonitor();
+    mode = glfwGetVideoMode(monitor);
+}
+
+void Window::Detail::SetColorHints() {
+    glfwWindowHint(GLFW_RED_BITS, mode->redBits);
+    glfwWindowHint(GLFW_GREEN_BITS, mode->greenBits);
+    glfwWindowHint(GLFW_BLUE_BITS, mode->blueBits);
+}
+
+void Window::Detail::SetRenderHints() {
+    glfwWindowHint(GLFW_REFRESH_RATE, mode->refreshRate);
+    glfwWindowHint(GLFW_SAMPLES, SAMPLES);
+}
+
+void Window::Detail::CreateWindow() {
+    window = glfwCreateWindow(mode->width, mode->height, NAME.c_str(), monitor, NULL);
+    if (window == NULL) {
+        Logging::Info("Failed to initialize window");
+        glfwTerminate();
+        return;
+    }
+}
+
+void Window::Detail::AcquireWindowParameters() {
+    width = mode->width;
+    height = mode->height;
+    glfwMakeContextCurrent(window);
+    Mouse::SetWindow(window);
+    Keys::SetWindow(window);
+}
+
 void Window::Detail::InitializeGlfw() {
     if (!glfwInit()) {
         Logging::Info("Failed to initialize GLFW.");
         return;
     }
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, MAJOR_VERSION);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, MINOR_VERSION);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    monitor = glfwGetPrimaryMonitor();
-    mode = glfwGetVideoMode(monitor);
-    Logging::Info("Initialized GLFW.");
+    SetVersionHints();
+    AcquireMonitor();
 }
 
 void Window::Detail::InitializeGlad() {
@@ -36,31 +70,16 @@ void Window::Detail::InitializeGlad() {
         return;
     }
     glEnable(GL_DEPTH_TEST);
-    Logging::Info("Initialized GLAD.");
 }
 
 void Window::Detail::InitializeHints() {
-    glfwWindowHint(GLFW_RED_BITS, mode->redBits);
-    glfwWindowHint(GLFW_GREEN_BITS, mode->greenBits);
-    glfwWindowHint(GLFW_BLUE_BITS, mode->blueBits);
-    glfwWindowHint(GLFW_REFRESH_RATE, mode->refreshRate);
-    glfwWindowHint(GLFW_SAMPLES, SAMPLES);
-    Logging::Info("Initialized Hints.");
+    SetColorHints();
+    SetRenderHints();
 }
 
 void Window::Detail::InitializeWindow() {
-    window = glfwCreateWindow(mode->width, mode->height, NAME, monitor, NULL);
-    if (window == NULL) {
-        Logging::Info("Failed to initialize window");
-        glfwTerminate();
-        return;
-    }
-    width = mode->width;
-    height = mode->height;
-    glfwMakeContextCurrent(window);
-    Mouse::SetWindow(window);
-    Keys::SetWindow(window);
-    Logging::Info("Initialized window.");
+    CreateWindow();
+    AcquireWindowParameters();
 }
 
 void Window::Initialize() {
@@ -74,8 +93,8 @@ void Window::Clear() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void Window::Background(float r, float g, float b, float a) {
-    glClearColor(0.8, 0.0, 0.0, 1.0);
+void Window::Background(const float r, const float g, const float b, const float a) {
+    glClearColor(r, g, b, a);
 }
 
 void Window::SwapBuffers() {

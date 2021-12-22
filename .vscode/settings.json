@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.cppm": "cpp",
         "array": "cpp",
         "atomic": "cpp",
         "bit": "cpp",

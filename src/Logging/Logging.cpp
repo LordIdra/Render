@@ -1,6 +1,6 @@
 #include "Logging.h"
 
 
-void Logging::Info(string value) {
-    std::cout << value << endl;
+void Logging::Info(const std::string &value) {
+    std::cout << value << "\n";
 }

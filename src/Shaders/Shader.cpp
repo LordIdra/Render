@@ -1,48 +1,63 @@
 #include "Shader.h"
 
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#include <filesystem>
+#include <../include/glad/glad.h>
+#include <../include/GLFW/glfw3.h>
+#include "../Logging/Logging.h"
 
-bool exists(const std::string path) {
-   ifstream file;
+
+
+Shader::Shader(const std::string &path, const unsigned int type) {
+    id = glCreateShader(type);
+    std::string sourceString = ReadFile(path);
+    const char *source = sourceString.c_str();
+    glShaderSource(id, 1, &source, NULL);
+    glCompileShader(id);
+    CheckCompileSuccess(path);
+}
+
+Shader::~Shader() {
+    glDeleteShader(id);
+}
+
+bool FileExists(const std::string path) {
+   std::ifstream file;
    file.open(path);
    return bool(file);
 }
 
-
-const char* Shader::ReadFile(string path) {
-    if (!exists(path)) {
-        Logging::Info("File not found: " + path);
-    }
-    ifstream file(path);
-    stringstream sourceBuffer;
+std::string Shader::FileAsString(const std::string &path) const {
+    std::ifstream file(path);
+    std::stringstream sourceBuffer;
     sourceBuffer << file.rdbuf();
     file.close();
-    return sourceBuffer.str().c_str();
+    return sourceBuffer.str();
 }
 
-void Shader::CheckCompile(string path) {
-    int compileStatus;
-    glGetShaderiv(compileStatus, GL_COMPILE_STATUS, &compileStatus);
-    if (!compileStatus) {
-        char compileLog[512];
-        glGetShaderInfoLog(id, 512, NULL, compileLog);
-        Logging::Info("Shader at " + path + " failed to compile:" + compileLog);
+std::string Shader::ReadFile(const std::string &path) const {
+    if (!FileExists(path)) {
+        Logging::Info("File not found: " + path);
+    }
+    return FileAsString(path);
+}
+
+void Shader::PrintCompileLog(const std::string &path) const {
+    char compileLog[512];
+    glGetShaderInfoLog(id, 512, NULL, compileLog);
+    Logging::Info("Shader at " + path + " failed to compile:" + compileLog);
+}
+
+void Shader::CheckCompileSuccess(const std::string &path) const {
+    int compileSuccessful;
+    glGetShaderiv(id, GL_COMPILE_STATUS, &compileSuccessful);
+    if (!compileSuccessful) {
+        PrintCompileLog(path);
     }
 }
 
-Shader::Shader(string path, unsigned int type) {
-    id = glCreateShader(type);
-    const char* source = ReadFile(path);
-    Logging::Info(path);
-    Logging::Info(source);
-    glShaderSource(id, 1, &source, NULL);
-    glCompileShader(id);
-    CheckCompile(path);
-}
-
-void Shader::Attach() {
-    glAttachShader(id, type);
-}
-
-void Shader::Delete() {
-    glDeleteShader(id);
+void Shader::Attach(const int programId) const {
+    glAttachShader(programId, id);
 }

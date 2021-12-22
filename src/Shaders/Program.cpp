@@ -1,5 +1,11 @@
 #include "Program.h"
 
+#include <../include/glad/glad.h>
+#include <../include/GLFW/glfw3.h>
+#include "../Logging/Logging.h"
+
+
+
 Program::Program() {}
 
 void Program::Init() {
@@ -10,20 +16,29 @@ void Program::Init() {
     id = glCreateProgram();
 }
 
-void Program::AddShader(Shader shader) {
-    Use();
-    shader.Attach();
+void Program::AddShader(const Shader &shader) const {
+    shader.Attach(id);
 }
-void Program::Link() {
-    int linkStatus;
-    glGetProgramiv(id, GL_LINK_STATUS, &linkStatus);
-    if (!linkStatus) {
-        char linkLog[512];
-        glGetProgramInfoLog(id, 512, NULL, linkLog);
-        Logging::Info("Program failed to link: " + string(linkLog));
+
+void Program::CheckLinkSuccess() const {
+    int linkSuccessful;
+    glGetProgramiv(id, GL_LINK_STATUS, &linkSuccessful);
+    if (!linkSuccessful) {
+        PrintLinkLog();
     }
 }
 
-void Program::Use() {
+void Program::PrintLinkLog() const {
+    char linkLog[512];
+    glGetProgramInfoLog(id, 512, NULL, linkLog);
+    Logging::Info("Program failed to link: " + std::string(linkLog));
+}
+
+void Program::Link() const {
+    glLinkProgram(id);
+    CheckLinkSuccess();
+}
+
+void Program::Use() const {
     glUseProgram(id);
 }

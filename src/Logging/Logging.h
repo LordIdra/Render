@@ -2,9 +2,8 @@
 
 #include <iostream>
 
-using namespace std;
 
 
 namespace Logging {
-    void Info(string);
+    void Info(const std::string &value);
 }

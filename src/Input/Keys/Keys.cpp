@@ -1,7 +1,7 @@
 #include "Keys.h"
 
 
-void Keys::SetWindow(GLFWwindow* window) {
+void Keys::SetWindow(GLFWwindow *const window) {
     Keys::window = window;
 }
 

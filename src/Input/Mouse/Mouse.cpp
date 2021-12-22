@@ -1,7 +1,7 @@
 #include "Mouse.h"
 
 
-void Mouse::SetWindow(GLFWwindow* window) {
+void Mouse::SetWindow(GLFWwindow *const window) {
     Mouse::window = window;
 }
 
