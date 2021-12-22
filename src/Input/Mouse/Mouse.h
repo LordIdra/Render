@@ -4,6 +4,7 @@
 #include <../include/GLFW/glfw3.h>
 
 
+
 namespace Mouse {
     namespace {
         GLFWwindow *window;

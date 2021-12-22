@@ -6,8 +6,8 @@
 
 class Shader {
 private:
-    unsigned int id;
-    unsigned int type;
+    const unsigned int id;
+    const unsigned int type;
 
     std::string FileAsString(const std::string &path) const;
     std::string ReadFile(const std::string &path) const;
