@@ -76,13 +76,7 @@ public:
     Chunk() = default;
     Chunk(const std::vector<std::vector<Vertex>> &initialVertices);
 
-    void SetColor(glm::vec4 &color) {
-        for (std::vector<Vertex> &vertexVector : vertices) {
-            for (Vertex &vertex : vertexVector) {
-                vertex.color = color;
-            }
-        }
-    }
+    void SetColor(glm::vec4 &color);
 
-    std::vector<Vertex> GetVertices();
+    std::vector<Vertex> GetVertices() const;
 };

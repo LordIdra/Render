@@ -4,6 +4,7 @@ project(rendertest)
 set(src_files
     "main.cpp"
     "src/Chunk.cpp"
+    "src/Indices.cpp"
     "src/Map.cpp"
 )
 

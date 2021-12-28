@@ -8,7 +8,15 @@ Chunk::Chunk(const std::vector<std::vector<Vertex>> &initialVertices)
     : vertices(initialVertices)
 {}
 
-std::vector<Vertex> Chunk::GetVertices() {
+void Chunk::SetColor(glm::vec4 &color) {
+    for (std::vector<Vertex> &vertexVector : vertices) {
+        for (Vertex &vertex : vertexVector) {
+            vertex.color = color;
+        }
+    }
+}
+
+std::vector<Vertex> Chunk::GetVertices() const {
     std::vector<Vertex> oneDimensionalVertices;
     for (std::vector<Vertex> vertexVector : vertices) {
         for (Vertex vertex : vertexVector) {

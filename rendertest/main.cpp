@@ -12,6 +12,7 @@
 #include "Window/Window.h"
 
 #include "Map.h"
+#include "Indices.h"
 
 
 
@@ -32,6 +33,9 @@ std::vector<std::array<int, 2>> chunkCoordinates = {
 
 std::vector<Vertex> vertices;
 std::vector<unsigned int> indices;
+
+const float MOVE_SENSITIVIY = 0.08f;
+const float MOVE_DECCELERATION = 0.12f;
 
 const float ZOOM_SENSITIVIY = 0.08f;
 const float ZOOM_DECCELERATION = 0.12f;
@@ -57,7 +61,7 @@ void GenerateChunks() {
 
 void DrawChunks() {
     vertices = map.GetAllVertices(chunkCoordinates);
-    indices = map.GetAllIndices(chunkCoordinates);
+    indices = Indices::GetAllIndices(map, chunkCoordinates);
 }
 
 void CreateMap() {
@@ -78,7 +82,11 @@ void HandleInput() {
     if (Keys::KeyDown(GLFW_KEY_ESCAPE)) Window::SetShouldClose();
 }
 
-void UpdateCamera() {
+void UpdateMove() {
+    
+}
+
+void UpdateZoom() {
     Camera::AddThetaXZ(Mouse::positionDelta.x); 
     Camera::AddThetaXY(Mouse::positionDelta.y);
     if (Mouse::scrollDelta.y != 0) {
@@ -89,6 +97,11 @@ void UpdateCamera() {
         else                          zoom_speed = 0;
     }
     Camera::Zoom(zoom_speed * ZOOM_SENSITIVIY);
+}
+
+void UpdateCamera() {
+    UpdateMove();
+    UpdateZoom();
 }
 
 void Render() {
@@ -117,6 +130,8 @@ int main() {
     CreateMap();
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     Camera::SetTarget(0.0f, 0.0f, 0.0f);
+    Camera::SetMinZoom(5.0f);
+    Camera::SetMaxZoom(50.0f);
     Mouse::Hide();
     CreateProgram();
     Mainloop();
