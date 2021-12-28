@@ -8,11 +8,12 @@
 namespace Camera {
     namespace Detail {
         const double PI = 3.1416;
-        const double MAX_THETA_XY = PI / 2.2;
-
         const glm::vec3 VERTICAL = glm::vec3(0.0f, 1.0f, 0.0f);
-        const float NEAR = 0.1f;
-        const float FAR = 100.0f;
+
+        double maxThetaXY = PI / 2.2;
+        float fieldOfView = 45.0f;
+        float near = 0.1f;
+        float far = 100.0f;
 
         double minZoom = 1.0f;
         double maxZoom = 20.0f;
@@ -32,8 +33,8 @@ namespace Camera {
         glm::mat4 projection = glm::mat4(1.0f);
 
         void CheckThetaBounds() {
-            if (thetaXY > MAX_THETA_XY)  thetaXY = MAX_THETA_XY;
-            if (thetaXY < -MAX_THETA_XY) thetaXY = -MAX_THETA_XY;
+            if (thetaXY > maxThetaXY)  thetaXY = maxThetaXY;
+            if (thetaXY < -maxThetaXY) thetaXY = -maxThetaXY;
         }
 
         void CheckZoomBounds() {
@@ -61,8 +62,8 @@ namespace Camera {
 
 
     void Initialize() {
-        Detail::projection = glm::perspective(glm::radians(45.0f), ((float)Window::GetWidth()) / ((float)Window::GetHeight()), 
-                                              Detail::NEAR, Detail::FAR);
+        Detail::projection = glm::perspective(glm::radians(Detail::fieldOfView), ((float)Window::GetWidth()) / ((float)Window::GetHeight()), 
+                                              Detail::near, Detail::far);
     }
     
     glm::mat4 GetView() {
@@ -82,6 +83,30 @@ namespace Camera {
     }
     void SetMaxZoom(float max) {
         Detail::maxZoom = max;
+    }
+
+    void SetMaxThetaXY(float theta) {
+        Detail::maxThetaXY = theta;
+    }
+
+    void SetNear(float near) {
+        Detail::near = near;
+    }
+
+    void SetFar(float far) {
+        Detail::far = far;
+    }
+
+    void AddTargetX(float deltaX) {
+        Detail::target.x += deltaX;
+    }
+
+    void AddTargetY(float deltaY) {
+        Detail::target.y += deltaY;
+    }
+
+    void AddTargetZ(float deltaZ) {
+        Detail::target.z += deltaZ;
     }
 
     void Zoom(double deltaZoom) {

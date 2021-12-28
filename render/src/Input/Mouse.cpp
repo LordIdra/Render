@@ -7,15 +7,13 @@
 
 namespace Mouse {
     namespace Detail {
-        const double POSITION_SENSITIVITY = 10.0;
-        const double SCROLL_SENSITIVITY = 1.0;
 
         glm::vec2 positionPrevious;
 
         void MoveCallback(GLFWwindow* window, double xpos, double ypos) {
             positionPrevious = position;
-            position.x = (xpos * POSITION_SENSITIVITY) / Window::Detail::width;
-            position.y = (ypos * POSITION_SENSITIVITY) / Window::Detail::height;
+            position.x = xpos / Window::Detail::width;
+            position.y = ypos / Window::Detail::height;
             positionDelta = position - positionPrevious;
         }
 

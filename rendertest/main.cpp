@@ -34,13 +34,19 @@ std::vector<std::array<int, 2>> chunkCoordinates = {
 std::vector<Vertex> vertices;
 std::vector<unsigned int> indices;
 
-const float MOVE_SENSITIVIY = 0.08f;
-const float MOVE_DECCELERATION = 0.12f;
+const float MOVE_SENSITIVIY = 0.1f;
+const float MOVE_ACCELERATION = 0.5f;
+const float MAX_MOVE_SPEED = 5.0f;
 
-const float ZOOM_SENSITIVIY = 0.08f;
-const float ZOOM_DECCELERATION = 0.12f;
+const float MOUSE_SENSITIVIY = 6.0f;
 
-float zoom_speed = 0.0f;
+const float ZOOM_SENSITIVIY = 0.1f;
+const float ZOOM_ACCELERATION = 0.12f;
+
+float moveSpeedX = 0.0f;
+float moveSpeedZ = 0.0f;
+
+float zoomSpeed = 0.0f;
 
 Map map;
 
@@ -82,21 +88,53 @@ void HandleInput() {
     if (Keys::KeyDown(GLFW_KEY_ESCAPE)) Window::SetShouldClose();
 }
 
+void UpdateMoveSpeedX() {
+    if      (Keys::KeyDown(GLFW_KEY_W))                 moveSpeedX += MOVE_ACCELERATION;
+    else if (Keys::KeyDown(GLFW_KEY_S))                 moveSpeedX -= MOVE_ACCELERATION;
+    else if (moveSpeedX >  (MOVE_ACCELERATION/2.0f))    moveSpeedX -= MOVE_ACCELERATION;
+    else if (moveSpeedX < -(MOVE_ACCELERATION/2.0f))    moveSpeedX += MOVE_ACCELERATION;
+    else                                                moveSpeedX = 0;
+}
+
+void UpdateMoveSpeedZ() {
+    if      (Keys::KeyDown(GLFW_KEY_D))                 moveSpeedZ += MOVE_ACCELERATION;
+    else if (Keys::KeyDown(GLFW_KEY_A))                 moveSpeedZ -= MOVE_ACCELERATION;
+    else if (moveSpeedZ >  (MOVE_ACCELERATION/2.0f))    moveSpeedZ -= MOVE_ACCELERATION;
+    else if (moveSpeedZ < -(MOVE_ACCELERATION/2.0f))    moveSpeedZ += MOVE_ACCELERATION;
+    else                                                moveSpeedZ = 0;
+}
+
+void CheckBoundsMoveSpeedX() {
+    if      (moveSpeedX >  (MAX_MOVE_SPEED))            moveSpeedX = MAX_MOVE_SPEED;
+    else if (moveSpeedX < -(MAX_MOVE_SPEED))            moveSpeedX = -MAX_MOVE_SPEED;
+}
+
+void CheckBoundsMoveSpeedZ() {
+    if      (moveSpeedZ >  (MAX_MOVE_SPEED))            moveSpeedZ = MAX_MOVE_SPEED;
+    else if (moveSpeedZ < -(MAX_MOVE_SPEED))            moveSpeedZ = -MAX_MOVE_SPEED;
+}
+
 void UpdateMove() {
+    Camera::AddTargetX(MOVE_SENSITIVIY * moveSpeedX);
+    Camera::AddTargetZ(MOVE_SENSITIVIY * moveSpeedZ);
+
+    UpdateMoveSpeedX();
+    UpdateMoveSpeedZ();
     
+    CheckBoundsMoveSpeedX();
+    CheckBoundsMoveSpeedZ();
 }
 
 void UpdateZoom() {
-    Camera::AddThetaXZ(Mouse::positionDelta.x); 
-    Camera::AddThetaXY(Mouse::positionDelta.y);
-    if (Mouse::scrollDelta.y != 0) {
-        zoom_speed = Mouse::scrollDelta.y;
-    } else {
-        if      (zoom_speed >  (ZOOM_DECCELERATION/2.0f)) zoom_speed -= ZOOM_DECCELERATION;
-        else if (zoom_speed < -(ZOOM_DECCELERATION/2.0f)) zoom_speed += ZOOM_DECCELERATION;
-        else                          zoom_speed = 0;
-    }
-    Camera::Zoom(zoom_speed * ZOOM_SENSITIVIY);
+    Camera::AddThetaXZ(MOUSE_SENSITIVIY * Mouse::positionDelta.x);
+    Camera::AddThetaXY(MOUSE_SENSITIVIY * Mouse::positionDelta.y);
+
+    if      (Mouse::scrollDelta.y != 0)             zoomSpeed = Mouse::scrollDelta.y;
+    else if (zoomSpeed >  (ZOOM_ACCELERATION/2.0f)) zoomSpeed -= ZOOM_ACCELERATION;
+    else if (zoomSpeed < -(ZOOM_ACCELERATION/2.0f)) zoomSpeed += ZOOM_ACCELERATION;
+    else                                            zoomSpeed = 0;
+
+    Camera::Zoom(zoomSpeed * ZOOM_SENSITIVIY);
 }
 
 void UpdateCamera() {

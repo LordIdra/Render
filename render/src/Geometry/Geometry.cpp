@@ -6,7 +6,7 @@
 
 namespace Geometry {
     namespace Detail {
-        const float SCALE_FACTOR = 1.0;
+        float scaleFactor = 1.0;
         VAO vao;
         EBO ebo;
         unsigned int index;
@@ -40,12 +40,16 @@ namespace Geometry {
         Detail::AddVertexAttributes();
     }
 
+    void SetScaleFactor(float scaleFactor) {
+        Detail::scaleFactor = scaleFactor;
+    }
+
     void SetVertices(std::vector<Vertex> &vertices) {
         Detail::vertices.clear();
         for (Vertex &vertex : vertices) {
-            vertex.position.x *= Detail::SCALE_FACTOR;
-            vertex.position.y *= Detail::SCALE_FACTOR;
-            vertex.position.z *= Detail::SCALE_FACTOR;
+            vertex.position.x *= Detail::scaleFactor;
+            vertex.position.y *= Detail::scaleFactor;
+            vertex.position.z *= Detail::scaleFactor;
             Detail::vertices.push_back(vertex.position.x);
             Detail::vertices.push_back(vertex.position.y);
             Detail::vertices.push_back(vertex.position.z);

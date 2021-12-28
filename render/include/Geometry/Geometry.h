@@ -9,7 +9,7 @@
 
 namespace Geometry {
     namespace Detail {
-        extern const float SCALE_FACTOR;
+        extern float scaleFactor;
 
         extern VAO vao;
         extern EBO ebo;
@@ -24,6 +24,7 @@ namespace Geometry {
 
     void Initialize();
 
+    void SetScaleFactor(float scaleFactor);
     void SetVertices(std::vector<Vertex> &vertices);
     void SetIndices(std::vector<unsigned int> &indices);
 

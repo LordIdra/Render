@@ -8,8 +8,6 @@
 
 namespace Mouse {
     namespace Detail {
-        extern const double POSITION_SENSITIVITY;
-        extern const double SCROLL_SENSITIVITY;
         extern glm::vec2 positionPrevious;
         extern glm::vec2 scrollPrevious;
 
