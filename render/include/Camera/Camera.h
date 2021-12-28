@@ -9,14 +9,13 @@ namespace Camera {
         extern const double PI;
         extern const double MAX_THETA_XY;
         extern const double ZOOM_SENSITIVITY;
-
-        extern const double MIN_ZOOM;
-        extern const double MAX_ZOOM;
         
         extern const double FIELD_OF_VIEW;
-        
 
         extern const glm::vec3 VERTICAL;
+
+        extern double minZoom;
+        extern double maxZoom;
 
         extern glm::vec3 back;
         extern glm::vec3 up;
@@ -43,6 +42,8 @@ namespace Camera {
     glm::mat4 GetView();
     glm::mat4 GetProjection();
     void SetTarget(float x, float y, float z);
+    void SetMinZoom(float min);
+    void SetMaxZoom(float min);
 
     void Zoom(double deltaZoom);
     void AddThetaXZ(float deltaThetaXZ);

@@ -2,7 +2,9 @@ cmake_minimum_required(VERSION 3.0.0)
 project(rendertest)
 
 set(src_files
-    "src/main.cpp"
+    "main.cpp"
+    "src/Chunk.cpp"
+    "src/Map.cpp"
 )
 
 add_executable(${PROJECT_NAME} ${src_files})

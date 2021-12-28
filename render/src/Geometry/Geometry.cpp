@@ -45,6 +45,7 @@ namespace Geometry {
         for (Vertex &vertex : vertices) {
             vertex.position.x *= Detail::SCALE_FACTOR;
             vertex.position.y *= Detail::SCALE_FACTOR;
+            vertex.position.z *= Detail::SCALE_FACTOR;
             Detail::vertices.push_back(vertex.position.x);
             Detail::vertices.push_back(vertex.position.y);
             Detail::vertices.push_back(vertex.position.z);

@@ -10,12 +10,12 @@ namespace Camera {
         const double PI = 3.1416;
         const double MAX_THETA_XY = PI / 2.2;
 
-        const double MIN_ZOOM = 1.0f;
-        const double MAX_ZOOM = 20.0f;
-
         const glm::vec3 VERTICAL = glm::vec3(0.0f, 1.0f, 0.0f);
         const float NEAR = 0.1f;
         const float FAR = 100.0f;
+
+        double minZoom = 1.0f;
+        double maxZoom = 20.0f;
 
         glm::vec3 back = glm::vec3(-1.0f, 0.0f, 0.0f);
         glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
@@ -37,8 +37,8 @@ namespace Camera {
         }
 
         void CheckZoomBounds() {
-            if (zoom > MAX_ZOOM) zoom = MAX_ZOOM;
-            if (zoom < MIN_ZOOM) zoom = MIN_ZOOM;
+            if (zoom > maxZoom) zoom = maxZoom;
+            if (zoom < minZoom) zoom = minZoom;
         }
 
         void UpdatePosition() {
@@ -75,6 +75,13 @@ namespace Camera {
 
     void SetTarget(float x, float y, float z) {
         Detail::target = glm::vec3(x, y, z);
+    }
+
+    void SetMinZoom(float min) {
+        Detail::minZoom = min;
+    }
+    void SetMaxZoom(float max) {
+        Detail::maxZoom = max;
     }
 
     void Zoom(double deltaZoom) {
