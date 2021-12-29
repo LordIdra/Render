@@ -56,6 +56,7 @@ namespace Camera {
     void Zoom(double deltaZoom);
     void AddThetaXZ(float deltaThetaXZ);
     void AddThetaXY(float deltaThetaXY);
+    float GetThetaXZ();
 
     void Update();
 }

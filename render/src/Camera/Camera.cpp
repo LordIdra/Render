@@ -62,8 +62,7 @@ namespace Camera {
 
 
     void Initialize() {
-        Detail::projection = glm::perspective(glm::radians(Detail::fieldOfView), ((float)Window::GetWidth()) / ((float)Window::GetHeight()), 
-                                              Detail::near, Detail::far);
+        Detail::projection = glm::perspective(glm::radians(Detail::fieldOfView), ((float)Window::GetWidth()) / ((float)Window::GetHeight()), Detail::near, Detail::far);
     }
     
     glm::mat4 GetView() {
@@ -87,6 +86,10 @@ namespace Camera {
 
     void SetMaxThetaXY(float theta) {
         Detail::maxThetaXY = theta;
+    }
+
+    float GetThetaXZ() {
+        return Detail::thetaXZ;
     }
 
     void SetNear(float near) {

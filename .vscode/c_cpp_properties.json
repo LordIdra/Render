@@ -4,7 +4,8 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/usr/include/c++/10"
+                "/usr/include/c++/10",
+                "${workspaceFolder}/render/include"
             ],
             "defines": [],
             "cStandard": "gnu17",

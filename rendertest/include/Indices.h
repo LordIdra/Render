@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <array>
-#include "Map.h"
+#include "TerrainStorage.h"
 
 
 
@@ -29,10 +29,10 @@ namespace Indices {
 
     void DrawNorthEastTrianglesFacingNorth      (std::vector<unsigned int> &indices, const std::vector<std::array<int, 2>> &chunksToRender, const std::array<int, 2> coords, const int chunkConstant);
     void DrawNorthEastTrianglesFacingEast       (std::vector<unsigned int> &indices, const std::vector<std::array<int, 2>> &chunksToRender, const std::array<int, 2> coords, const int chunkConstant);
-    void DrawNorthEastTriangles (const Map &map, std::vector<unsigned int> &indices, const std::vector<std::array<int, 2>> &chunksToRender, const std::array<int, 2> coords, const int chunkConstant);
+    void DrawNorthEastTriangles (const TerrainStorage &terrainStorage, std::vector<unsigned int> &indices, const std::vector<std::array<int, 2>> &chunksToRender, const std::array<int, 2> coords, const int chunkConstant);
 
-    void JoinAdjacentChunks(const Map &map, std::vector<unsigned int> &indices, const std::vector<std::array<int, 2>> &chunksToRender, const std::array<int, 2> coords, const int chunkConstant);
+    void JoinAdjacentChunks(const TerrainStorage &terrainStorage, std::vector<unsigned int> &indices, const std::vector<std::array<int, 2>> &chunksToRender, const std::array<int, 2> coords, const int chunkConstant);
     void GetChunkIndices(std::vector<unsigned int> &indices, unsigned int chunkConstant);
 
-    std::vector<unsigned int> GetAllIndices(const Map& map, const std::vector<std::array<int, 2>> &chunksToRender);
+    std::vector<unsigned int> GetAllIndices(const TerrainStorage& terrainStorage, const std::vector<std::array<int, 2>> &chunksToRender);
 }

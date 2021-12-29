@@ -24,6 +24,8 @@ namespace Geometry {
 
     void Initialize();
 
+    void EnableWireframeMode();
+    void DisableWireframeMode();
     void SetScaleFactor(float scaleFactor);
     void SetVertices(std::vector<Vertex> &vertices);
     void SetIndices(std::vector<unsigned int> &indices);

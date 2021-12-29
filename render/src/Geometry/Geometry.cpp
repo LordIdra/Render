@@ -40,6 +40,14 @@ namespace Geometry {
         Detail::AddVertexAttributes();
     }
 
+    void EnableWireframeMode() {
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    }
+
+    void DisableWireframeMode() {
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    }
+
     void SetScaleFactor(float scaleFactor) {
         Detail::scaleFactor = scaleFactor;
     }

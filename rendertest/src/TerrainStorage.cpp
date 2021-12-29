@@ -1,9 +1,9 @@
-#include "Map.h"
+#include "TerrainStorage.h"
 
 
 
 /* PRIVATE ------------------- */
-std::vector<std::vector<Vertex>> Map::GenerateChunkVertices(const int chunkX, const int chunkZ) const {
+std::vector<std::vector<Vertex>> TerrainStorage::GenerateChunkVertices(const int chunkX, const int chunkZ) const {
     glm::vec4 vertexColor = glm::vec4(0.2f, 0.8f, 0.2f, 1.0f);
     std::vector<std::vector<Vertex>> vertices;
 
@@ -34,23 +34,23 @@ std::vector<std::vector<Vertex>> Map::GenerateChunkVertices(const int chunkX, co
     return vertices;
 }
 
-Chunk &Map::GetChunk(const int x, const int z) {
+Chunk &TerrainStorage::GetChunk(const int x, const int z) {
     // callers are expected to do their own ChunkExists check, because if it returns
     // false, we'll want to handle it differently depending on the scenario
     return chunks.at(x).at(z);
 }
 
-void Map::AddChunk(const int x, const int z, Chunk chunk) {
+void TerrainStorage::AddChunk(const int x, const int z, Chunk chunk) {
     chunks[x][z] = chunk;
 }
 
-void Map::DeleteChunk(const int x, const int z) {
+void TerrainStorage::DeleteChunk(const int x, const int z) {
     if (ChunkExists(x, z)) {
         chunks[x].erase(z);
     }
 }
 
-std::vector<Vertex> Map::GetVertices(const int x, const int z) const {
+std::vector<Vertex> TerrainStorage::GetVertices(const int x, const int z) const {
     std::vector<Vertex> oneDimensionalVertices;
     return chunks.at(x).at(z).GetVertices();
 }
@@ -60,14 +60,14 @@ std::vector<Vertex> Map::GetVertices(const int x, const int z) const {
 
 
 /* PUBLIC -------------------- */
-Map::Map() {}
+TerrainStorage::TerrainStorage() {}
 
-void Map::GenerateChunk(const int x, const int z) {
+void TerrainStorage::GenerateChunk(const int x, const int z) {
     std::vector<std::vector<Vertex>> vertices = GenerateChunkVertices(x, z);
     chunks[x][z] = Chunk(vertices);
 }
 
-bool Map::ChunkExists(const int x, const int z) const {
+bool TerrainStorage::ChunkExists(const int x, const int z) const {
     if (chunks.count(x) != 0) {
         if (chunks.at(x).count(z) != 0) {
             return true;
@@ -76,7 +76,7 @@ bool Map::ChunkExists(const int x, const int z) const {
     return false;
 }
 
-std::vector<Vertex> Map::GetAllVertices(const std::vector<std::array<int, 2>> &chunksToRender) {
+std::vector<Vertex> TerrainStorage::GetAllVertices(const std::vector<std::array<int, 2>> &chunksToRender) {
     std::vector<Vertex> vertices;
     for (const std::array<int, 2> chunkCoordinates : chunksToRender) {
         const std::vector<Vertex> chunkVertices = GetVertices(chunkCoordinates[0], chunkCoordinates[1]);

@@ -4,8 +4,12 @@ project(rendertest)
 set(src_files
     "main.cpp"
     "src/Chunk.cpp"
+    "src/Debug.cpp"
     "src/Indices.cpp"
-    "src/Map.cpp"
+    "src/Move.cpp"
+    "src/Render.cpp"
+    "src/TerrainStorage.cpp"
+    "src/Zoom.cpp"
 )
 
 add_executable(${PROJECT_NAME} ${src_files})

@@ -7,7 +7,7 @@
 
 
 // Explanation of chunk system can be found in Chunk.h
-class Map {
+class TerrainStorage {
 private:
     std::unordered_map<int, std::unordered_map<int, Chunk>> chunks;
 
@@ -20,7 +20,7 @@ private:
     std::vector<Vertex> GetVertices(const int x, const int z) const;
 
 public:
-    Map();
+    TerrainStorage();
 
     void GenerateChunk(const int x, const int z);
     bool ChunkExists  (const int x, const int z) const;

@@ -133,25 +133,25 @@ namespace Indices {
         AddNorthEastTrianglesFacingEast(indices, adjacentConstant, diagonalConstant, chunkConstant);
     }
 
-    void DrawNorthEastTriangles (const Map &map, std::vector<unsigned int> &indices, const std::vector<std::array<int, 2>> &chunksToRender, const std::array<int, 2> coords, const int chunkConstant) {
+    void DrawNorthEastTriangles (const TerrainStorage &terrainStorage, std::vector<unsigned int> &indices, const std::vector<std::array<int, 2>> &chunksToRender, const std::array<int, 2> coords, const int chunkConstant) {
         const std::array<int, 2> northCoords = GetRelativeCoords(Direction::north, coords);
         const std::array<int, 2> eastCoords  = GetRelativeCoords(Direction::east,  coords);
 
         const auto northCoordsIndex = GetIndex(chunksToRender, northCoords);
         const auto eastCoordsIndex  = GetIndex(chunksToRender, eastCoords);
 
-        if (map.ChunkExists(northCoords[0], northCoords[1])) DrawNorthEastTrianglesFacingNorth(indices, chunksToRender, coords, chunkConstant);
-        if (map.ChunkExists(eastCoords [0], eastCoords [1])) DrawNorthEastTrianglesFacingEast (indices, chunksToRender, coords, chunkConstant);
+        if (terrainStorage.ChunkExists(northCoords[0], northCoords[1])) DrawNorthEastTrianglesFacingNorth(indices, chunksToRender, coords, chunkConstant);
+        if (terrainStorage.ChunkExists(eastCoords [0], eastCoords [1])) DrawNorthEastTrianglesFacingEast (indices, chunksToRender, coords, chunkConstant);
     }
 
-    void JoinAdjacentChunks(const Map &map, std::vector<unsigned int> &indices, const std::vector<std::array<int, 2>> &chunksToRender, const std::array<int, 2> coords, const int chunkConstant) {
+    void JoinAdjacentChunks(const TerrainStorage &terrainStorage, std::vector<unsigned int> &indices, const std::vector<std::array<int, 2>> &chunksToRender, const std::array<int, 2> coords, const int chunkConstant) {
         const std::array<int, 2> northCoords      = GetRelativeCoords(Direction::north,       coords);
         const std::array<int, 2> eastCoords       = GetRelativeCoords(Direction::east,        coords);
         const std::array<int, 2> northEastCoords  = GetRelativeCoords(Direction::northeast,   coords);
 
-        if (map.ChunkExists(northCoords    [0], northCoords    [1])) DrawNorthTriangles         (indices, chunksToRender, coords, chunkConstant);
-        if (map.ChunkExists(eastCoords     [0], eastCoords     [1])) DrawEastTriangles          (indices, chunksToRender, coords, chunkConstant);
-        if (map.ChunkExists(northEastCoords[0], northEastCoords[1])) DrawNorthEastTriangles(map, indices, chunksToRender, coords, chunkConstant);
+        if (terrainStorage.ChunkExists(northCoords    [0], northCoords    [1])) DrawNorthTriangles                    (indices, chunksToRender, coords, chunkConstant);
+        if (terrainStorage.ChunkExists(eastCoords     [0], eastCoords     [1])) DrawEastTriangles                     (indices, chunksToRender, coords, chunkConstant);
+        if (terrainStorage.ChunkExists(northEastCoords[0], northEastCoords[1])) DrawNorthEastTriangles(terrainStorage, indices, chunksToRender, coords, chunkConstant);
     }
 
     void GetChunkIndices(std::vector<unsigned int> &indices, unsigned int chunkConstant) {
@@ -170,14 +170,14 @@ namespace Indices {
         }
     }
 
-    std::vector<unsigned int> GetAllIndices(const Map& map, const std::vector<std::array<int, 2>> &chunksToRender) {
+    std::vector<unsigned int> GetAllIndices(const TerrainStorage& terrainStorage, const std::vector<std::array<int, 2>> &chunksToRender) {
         std::vector<unsigned int> indices;
         unsigned int chunkIndex = 0;
         for (const std::array<int, 2> chunkCoords : chunksToRender) {
             const int chunkConstant = (chunkIndex * Chunk::CHUNK_SIZE * Chunk::CHUNK_SIZE);
 
             GetChunkIndices(indices, chunkConstant);
-            JoinAdjacentChunks(map, indices, chunksToRender, chunkCoords, chunkConstant);
+            JoinAdjacentChunks(terrainStorage, indices, chunksToRender, chunkCoords, chunkConstant);
             chunkIndex++;
         }
 
