@@ -1,10 +1,10 @@
 namespace Zoom {
-    namespace Detail {
-        extern const float MOUSE_SENSITIVIY;
-        extern const float ZOOM_SENSITIVIY;
-        extern const float ZOOM_ACCELERATION;
+    namespace {
+        const float MOUSE_SENSITIVIY = 6.0;
+        const float ZOOM_SENSITIVIY = 0.1;
+        const float ZOOM_ACCELERATION = 0.12;
 
-        extern float zoomSpeed;
+        float zoomSpeed = 0.0;
     }
 
     void Update();

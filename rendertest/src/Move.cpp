@@ -16,7 +16,7 @@ namespace Move {
     void CheckLowerBounds(float &moveSpeedDirection) {
         if      (moveSpeedDirection >  (Detail::MOVE_ACCELERATION.x/2.0f))  moveSpeedDirection -= Detail::MOVE_ACCELERATION.x;
         else if (moveSpeedDirection < -(Detail::MOVE_ACCELERATION.x/2.0f))  moveSpeedDirection += Detail::MOVE_ACCELERATION.x;
-        else                                                        moveSpeedDirection = 0;
+        else                                                                moveSpeedDirection = 0;
     }
 
     void CheckUpperBounds(float &moveSpeedDirection) {
@@ -25,8 +25,9 @@ namespace Move {
     }
 
     bool UpdateMoveSpeed(unsigned int increaseKey, unsigned int decreaseKey, float &moveSpeedDirection) {
-        if (Keys::KeyHeldDown(increaseKey)) moveSpeedDirection += Detail::MOVE_ACCELERATION.x;
-        if (Keys::KeyHeldDown(decreaseKey)) moveSpeedDirection -= Detail::MOVE_ACCELERATION.x;
+        if      (Keys::KeyHeldDown(increaseKey))                            moveSpeedDirection += Detail::MOVE_ACCELERATION.x;
+        if      (Keys::KeyHeldDown(decreaseKey))                            moveSpeedDirection -= Detail::MOVE_ACCELERATION.x;
+
         return (Keys::KeyHeldDown(increaseKey) || Keys::KeyHeldDown(decreaseKey));
     }
 

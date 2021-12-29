@@ -42,7 +42,6 @@ find_package(glm CONFIG REQUIRED)
 add_library(${PROJECT_NAME} ${src_files} ${include_files})
 link_libraries(${PROJECT_NAME} ${src_files} ${include_files})
 
-target_include_directories (${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/depend)
 target_include_directories (${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
 target_include_directories (${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
