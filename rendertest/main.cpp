@@ -13,7 +13,6 @@
 #include "Zoom.h"
 
 
-
 std::vector<std::array<int, 2>> chunkCoordinates = {
     std::array<int, 2> {0, 0},
     std::array<int, 2> {0, 1},

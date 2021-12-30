@@ -1,34 +1,21 @@
-cmake_minimum_required(VERSION 3.0.0)
+cmake_minimum_required(VERSION 3.10.0)
 project(render)
 
-set(include_files
-    
-)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(src_files
-    "include/Camera/Camera.h"
     "src/Camera/Camera.cpp"
-    "include/Core/Core.h"
     "src/Core/Core.cpp"
-    "include/Geometry/Geometry.h"
     "src/Geometry/Geometry.cpp"
-    "include/Input/Mouse.h"
     "src/Input/Mouse.cpp"
-    "include/Input/Keys.h"
     "src/Input/Keys.cpp"
-    "include/Logging/Logging.h"
     "src/Logging/Logging.cpp"
-    "include/Memory/EBO.h"
     "src/Memory/EBO.cpp"
-    "include/Memory/VBO.h"
     "src/Memory/VBO.cpp"
-    "include/Memory/VAO.h"
     "src/Memory/VAO.cpp"
-    "include/Shaders/Shader.h"
     "src/Shaders/Shader.cpp"
-    "include/Shaders/Program.h"
     "src/Shaders/Program.cpp"
-    "include/Window/Window.h"
     "src/Window/Window.cpp"
 )
 

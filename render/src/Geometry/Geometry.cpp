@@ -15,21 +15,21 @@ namespace Geometry {
 
         void AddVertexAttributes() {
             vao.AddVertexAttribute(VertexAttribute{
-                index: 0,
-                size: 3,
-                type: GL_FLOAT,
-                normalised: GL_FALSE,
-                stride: 7 * sizeof(GL_FLOAT),
-                offset: (void*)0
+                .index = 0,
+                .size = 3,
+                .type = GL_FLOAT,
+                .normalised = GL_FALSE,
+                .stride =  7 * sizeof(GL_FLOAT),
+                .offset =  (void*)0
             });
 
             vao.AddVertexAttribute(VertexAttribute{
-                index: 1,
-                size: 4,
-                type: GL_FLOAT,
-                normalised: GL_FALSE,
-                stride: 7 * sizeof(GL_FLOAT),
-                offset: (void*)(3*sizeof(float))
+                .index = 1,
+                .size = 4,
+                .type = GL_FLOAT,
+                .normalised = GL_FALSE,
+                .stride = 7 * sizeof(GL_FLOAT),
+                .offset = (void*)(3*sizeof(float))
             });
         }
     }

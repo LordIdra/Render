@@ -1,43 +1,40 @@
 #pragma once
 
 #include "glm/glm.hpp"
+#include "CameraSettings.h"
 
 
 
-namespace Camera {
-    namespace Detail {
-        extern const double PI;
-        extern const glm::vec3 VERTICAL;
+class Camera {
+private:
+    static const double PI;
+    static const glm::vec3 VERTICAL;
 
-        extern double maxThetaXY;
-        extern float fieldOfView;
-        extern float near;
-        extern float far;
+    const CameraSettings settings;
 
-        extern double minZoom;
-        extern double maxZoom;
+    glm::vec3 back;
+    glm::vec3 up;
+    glm::vec3 right;
 
-        extern glm::vec3 back;
-        extern glm::vec3 up;
-        extern glm::vec3 right;
+    float zoom;
+    float thetaXZ;
+    float thetaXY;
 
-        extern float zoom;
-        extern float thetaXZ;
-        extern float thetaXY;
+    glm::vec3 position;
+    glm::vec3 target;
 
-        extern glm::vec3 position;
-        extern glm::vec3 target;
+    glm::mat4 view;
+    glm::mat4 projection;
 
-        extern glm::mat4 view;
-        extern glm::mat4 projection;
+    void CheckThetaBounds();
+    void CheckZoomBounds();
+    void UpdatePosition();
+    void UpdateDirection();
 
-        void CheckThetaBounds();
-        void CheckZoomBounds();
-        void UpdatePosition();
-        void UpdateDirection();
-    }
-    
-    void Initialize();
+
+
+public:
+    Camera(CameraSettings &cameraSettings);
 
     glm::mat4 GetView();
     glm::mat4 GetProjection();
@@ -59,4 +56,4 @@ namespace Camera {
     float GetThetaXZ();
 
     void Update();
-}
+};
