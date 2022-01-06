@@ -10,14 +10,14 @@
 
 class VAO {
 private:
-    VBO vbo;
-    unsigned int id;
+    VBO vbo_;
+    unsigned int id_;
 
 public:
     VAO();
     void Init();
     void Bind() const;
-    void Unbind() const;
+    static void Unbind();
     void AddVertexAttribute(const VertexAttribute &attribute) const;
     void Data(const std::vector<float> &data) const;
 };

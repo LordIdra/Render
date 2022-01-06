@@ -1,7 +1,8 @@
 #pragma once
 
-#include "glm/glm.hpp"
 #include "CameraSettings.h"
+#include "Window/window.h"
+#include "glm/glm.hpp"
 
 
 
@@ -10,50 +11,43 @@ private:
     static const double PI;
     static const glm::vec3 VERTICAL;
 
-    const CameraSettings settings;
+    const CameraSettings settings_;
 
-    glm::vec3 back;
-    glm::vec3 up;
-    glm::vec3 right;
+    glm::vec3 back_;
+    glm::vec3 up_;
+    glm::vec3 right_;
 
-    float zoom;
-    float thetaXZ;
-    float thetaXY;
+    float zoom_;
+    float thetaXZ_;
+    float thetaXY_;
 
-    glm::vec3 position;
-    glm::vec3 target;
+    glm::vec3 position_;
+    glm::vec3 target_;
 
-    glm::mat4 view;
-    glm::mat4 projection;
+    glm::mat4 view_;
+    const glm::mat4 projection_;
 
-    void CheckThetaBounds();
-    void CheckZoomBounds();
-    void UpdatePosition();
-    void UpdateDirection();
-
-
+    auto CheckThetaBounds() -> void;
+    auto CheckZoomBounds() -> void;
+    auto UpdatePosition() -> void;
+    auto UpdateDirection() -> void;
 
 public:
-    Camera(CameraSettings &cameraSettings);
+    Camera(const CameraSettings &cameraSettings);
 
-    glm::mat4 GetView();
-    glm::mat4 GetProjection();
+    auto GetView() -> glm::mat4;
+    auto GetProjection() -> glm::mat4;
 
-    void SetTarget(float x, float y, float z);
-    void SetMinZoom(float min);
-    void SetMaxZoom(float max);
-    void SetMaxThetaXY(float theta);
-    void SetNear(float near);
-    void SetFar(float far);
+    auto SetTarget(float x, float y, float z) -> void;
+    [[nodiscard]] auto GetTarget() const -> glm::vec3;
+    auto AddTargetX(float deltaX) -> void;
+    auto AddTargetY(float deltaY) -> void;
+	auto AddTargetZ(float deltaZ) -> void;
 
-    void AddTargetX(float deltaX);
-    void AddTargetY(float deltaY);
-    void AddTargetZ(float deltaZ);
+    auto Zoom(float deltaZoom) -> void;
+    auto AddThetaXZ(float deltaThetaXZ) -> void;
+    auto AddThetaXY(float deltaThetaXY) -> void;
+    [[nodiscard]] auto GetThetaXZ() const -> float;
 
-    void Zoom(double deltaZoom);
-    void AddThetaXZ(float deltaThetaXZ);
-    void AddThetaXY(float deltaThetaXY);
-    float GetThetaXZ();
-
-    void Update();
+    auto Update() -> void;
 };

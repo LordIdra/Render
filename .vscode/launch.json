@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "g++ - Build and debug active file",
+            "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/Render",
+            "program": "${workspaceFolder}/build/rendertest/rendertest",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
@@ -26,9 +26,7 @@
                     "text": "-gdb-set disassembly-flavor intel",
                     "ignoreFailures": true
                 }
-            ],
-            "preLaunchTask": "C/C++: g++ build active file ver(1)",
-            "miDebuggerPath": "/usr/bin/gdb"
+            ]
         }
     ]
 }

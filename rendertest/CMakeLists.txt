@@ -3,17 +3,16 @@ project(rendertest)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(src_files
     "main.cpp"
     "src/Chunk.cpp"
-    "src/Debug.cpp"
-    "src/Indices.cpp"
-    "src/Move.cpp"
-    "src/Render.cpp"
+    "src/debug.cpp"
+    "src/indices.cpp"
+    "src/move.cpp"
+    "src/Visualiser.cpp"
     "src/TerrainStorage.cpp"
-    "src/Zoom.cpp"
-    "src/Test.cpp"
+    "src/zoom.cpp"
 )
 
 add_executable(${PROJECT_NAME} ${src_files})

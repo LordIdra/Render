@@ -68,15 +68,18 @@ Combined with chunk indexing with format [chunkX chunkY vertexX vertexY]:
 
 class Chunk {
 private:
-    std::vector<std::vector<Vertex>> vertices;
+    std::vector<std::vector<Vertex>> vertices_;
 
 public:
-    static const int CHUNK_SIZE;
+    static const int CHUNK_VERTEX_COUNT;
+    static const float CHUNK_VERTEX_SPACING;
+    static const float CHUNK_SIZE;
     
     Chunk() = default;
     Chunk(const std::vector<std::vector<Vertex>> &initialVertices);
 
-    void SetColor(glm::vec4 &color);
+    static auto GenerateChunkVertices(int chunkX, int chunkY, glm::vec4 color) -> std::vector<std::vector<Vertex>>;
 
-    std::vector<Vertex> GetVertices() const;
+    auto SetColor(glm::vec4 color) -> void;
+    [[nodiscard]] auto GetVertices() const ->  std::vector<Vertex>;
 };

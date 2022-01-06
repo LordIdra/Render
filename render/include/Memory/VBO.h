@@ -4,11 +4,11 @@
 
 class VBO {
 private:
-    unsigned int id;
+    unsigned int id_;
 
 public:
     VBO();
     void Init();
     void Bind() const;
-    void Unbind() const;
+    static void Unbind();
 };

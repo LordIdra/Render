@@ -1,34 +1,33 @@
 #pragma once
 
 #include <vector>
+#include "Memory/VertexAttribute.h"
 #include "Vertex.h"
 #include "../Memory/VAO.h"
 #include "../Memory/EBO.h"
 
 
 
-namespace Geometry {
-    namespace Detail {
-        extern float scaleFactor;
+class Geometry {
+private:
+    float scaleFactor_;
 
-        extern VAO vao;
-        extern EBO ebo;
+    VAO vao_;
+    EBO ebo_;
 
-        extern unsigned int index;
+    unsigned int index_;
 
-        extern std::vector<float> vertices;
-        extern std::vector<unsigned int> indices;
+    std::vector<float> vertices_;
+    std::vector<unsigned int> indices_;
 
-        void AddVertexAttributes();
-    }
+public:
+    Geometry(float scale);
+    
+    auto AddVertexAttribute(VertexAttribute &attribute) -> void;
+    auto SetVertices(std::vector<Vertex> &vertices) -> void;
+    auto SetIndices(std::vector<unsigned int> &indices) -> void;
+    auto Update() -> void;
 
-    void Initialize();
-
-    void EnableWireframeMode();
-    void DisableWireframeMode();
-    void SetScaleFactor(float scaleFactor);
-    void SetVertices(std::vector<Vertex> &vertices);
-    void SetIndices(std::vector<unsigned int> &indices);
-
-    void Update();
-}
+    static auto EnableWireframeMode() -> void;
+    static auto DisableWireframeMode() -> void;
+};

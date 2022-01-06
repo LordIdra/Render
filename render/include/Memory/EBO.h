@@ -6,12 +6,12 @@
 
 class EBO {
 private:
-    unsigned int id;
+    unsigned int id_;
 
 public:
     EBO();
-    void Init();
-    void Bind() const;
-    void Unbind() const;
-    void Data(const std::vector<unsigned int> &data) const;
+    auto Init() -> void;
+    auto Bind() const -> void;
+    static auto Unbind() -> void;
+    auto Data(const std::vector<unsigned int> &data) const -> void;
 };

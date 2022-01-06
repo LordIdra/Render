@@ -3,20 +3,20 @@ project(render)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(src_files
     "src/Camera/Camera.cpp"
-    "src/Core/Core.cpp"
+    "src/Init/init.cpp"
     "src/Geometry/Geometry.cpp"
-    "src/Input/Mouse.cpp"
-    "src/Input/Keys.cpp"
-    "src/Logging/Logging.cpp"
+    "src/Input/mouse.cpp"
+    "src/Input/keys.cpp"
+    "src/Logging/logging.cpp"
     "src/Memory/EBO.cpp"
     "src/Memory/VBO.cpp"
     "src/Memory/VAO.cpp"
     "src/Shaders/Shader.cpp"
     "src/Shaders/Program.cpp"
-    "src/Window/Window.cpp"
+    "src/Window/window.cpp"
 )
 
 set(CMAKE_TOOLCHAIN_FILE "/opt/vcpkg/scripts/buildsystems/vcpkg.cmake")

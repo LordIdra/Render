@@ -1,82 +1,53 @@
 #include "Geometry/Geometry.h"
 
-#include "Window/Window.h"
+#include "Window/window.h"
 
 
 
-namespace Geometry {
-    namespace Detail {
-        float scaleFactor = 1.0;
-        VAO vao;
-        EBO ebo;
-        unsigned int index;
-        std::vector<float> vertices;
-        std::vector<unsigned int> indices;
+/* PUBLIC -------------------- */
+Geometry::Geometry(float scale)
+    : scaleFactor_(scale),
+      index_(0) {
+    vao_.Init();
+    ebo_.Init();
+}
 
-        void AddVertexAttributes() {
-            vao.AddVertexAttribute(VertexAttribute{
-                .index = 0,
-                .size = 3,
-                .type = GL_FLOAT,
-                .normalised = GL_FALSE,
-                .stride =  7 * sizeof(GL_FLOAT),
-                .offset =  (void*)0
-            });
+auto Geometry::AddVertexAttribute(VertexAttribute &attribute) -> void {
+    vao_.AddVertexAttribute(attribute);
+}
 
-            vao.AddVertexAttribute(VertexAttribute{
-                .index = 1,
-                .size = 4,
-                .type = GL_FLOAT,
-                .normalised = GL_FALSE,
-                .stride = 7 * sizeof(GL_FLOAT),
-                .offset = (void*)(3*sizeof(float))
-            });
-        }
+auto Geometry::EnableWireframeMode() -> void {
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+}
+
+auto Geometry::DisableWireframeMode() -> void {
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+}
+
+auto Geometry::SetVertices(std::vector<Vertex> &vertices) -> void {
+    vertices_.clear();
+    for (Vertex &vertex : vertices) {
+        vertex.position.x *= scaleFactor_;
+        vertex.position.y *= scaleFactor_;
+        vertex.position.z *= scaleFactor_;
+        vertices_.push_back(vertex.position.x);
+        vertices_.push_back(vertex.position.y);
+        vertices_.push_back(vertex.position.z);
+        vertices_.push_back(vertex.color.r);
+        vertices_.push_back(vertex.color.g);
+        vertices_.push_back(vertex.color.b);
+        vertices_.push_back(vertex.color.a);
     }
+}
 
-    void Initialize() {
-        Detail::vao.Init();
-        Detail::ebo.Init();
-        Detail::AddVertexAttributes();
-    }
-
-    void EnableWireframeMode() {
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-    }
-
-    void DisableWireframeMode() {
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-    }
-
-    void SetScaleFactor(float scaleFactor) {
-        Detail::scaleFactor = scaleFactor;
-    }
-
-    void SetVertices(std::vector<Vertex> &vertices) {
-        Detail::vertices.clear();
-        for (Vertex &vertex : vertices) {
-            vertex.position.x *= Detail::scaleFactor;
-            vertex.position.y *= Detail::scaleFactor;
-            vertex.position.z *= Detail::scaleFactor;
-            Detail::vertices.push_back(vertex.position.x);
-            Detail::vertices.push_back(vertex.position.y);
-            Detail::vertices.push_back(vertex.position.z);
-            Detail::vertices.push_back(vertex.color.r);
-            Detail::vertices.push_back(vertex.color.g);
-            Detail::vertices.push_back(vertex.color.b);
-            Detail::vertices.push_back(vertex.color.a);
-        }
-    }
-
-    void SetIndices(std::vector<unsigned int> &indices) {
-        Detail::indices = indices;
-    }
+auto Geometry::SetIndices(std::vector<unsigned int> &indices) -> void {
+    indices_ = indices;
+}
     
-    void Update() {
-        Detail::vao.Data(Detail::vertices);
-        Detail::ebo.Data(Detail::indices);
-        Detail::vao.Bind();
-        Detail::ebo.Bind();
-        glDrawElements(GL_TRIANGLES, Detail::indices.size(), GL_UNSIGNED_INT, 0);       
-    }
+auto Geometry::Update() -> void {
+    vao_.Data(vertices_);
+    ebo_.Data(indices_);
+    vao_.Bind();
+    ebo_.Bind();
+    glDrawElements(GL_TRIANGLES, (int)indices_.size(), GL_UNSIGNED_INT, nullptr);       
 }

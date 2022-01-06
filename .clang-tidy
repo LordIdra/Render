@@ -1,0 +1,27 @@
+Checks: >-
+  bugprone-*,
+  cppcoreguidelines-*,
+  modernize-*,
+  performance-*,
+  portability-*,
+  readability-*,
+  -readability-implicit-bool-conversion,
+  -cppcoreguidelines-pro-type-union-access,
+  -modernize-pass-by-value,
+  -bugprone-easily-swappable-parameters,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -readability-magic-numbers,
+  -cppcoreguidelines-avoid-non-const-global-variables
+CheckOptions:
+  - key: readability-function-cognitive-complexity.Threshold
+    value: 100
+  - key: readability-function-cognitive-complexity.IgnoreMacros
+    value: true
+  - key: readability-identifier-naming.ClassCase
+    value: CamelCase
+  - key: readability-identifier-naming.NamespaceCase
+    value: lower_case
+  - key: readability-identifier-naming.PrivateMemberSuffix
+    value: _
+  - key: readability-identifier-naming.StructCase
+    value: CamelCase

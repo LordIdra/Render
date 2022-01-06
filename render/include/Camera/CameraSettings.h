@@ -5,10 +5,10 @@
 
 
 struct CameraSettings {
-    const double maxThetaXY;
+    const float maxThetaXY;
     const float fieldOfView;
     const float near;
     const float far;
-    const double minZoom;
-    const double maxZoom;
+    const float minZoom;
+    const float maxZoom;
 };

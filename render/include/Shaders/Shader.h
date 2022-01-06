@@ -4,19 +4,20 @@
 
 
 
-class Shader {
+class Shader {  //NOLINT - no custom copy constructor is required; id and type can be copied directly
 private:
-    unsigned int id;
-    const unsigned int type;
+    unsigned int id_;
+    const unsigned int type_;
 
-    bool FileExists(const std::string &path) const;
-    std::string FileAsString(const std::string &path) const;
-    std::string ReadFile(const std::string &path) const;
-    void CheckCompileSuccess(const std::string &path) const;
-    void PrintCompileLog(const std::string &path) const;
+    [[nodiscard]] static auto FileExists(const std::string &path) -> bool;
+    [[nodiscard]] static auto FileAsString(const std::string &path) -> std::string;
+    [[nodiscard]] static auto ReadFile(const std::string &path) -> std::string;
+
+    auto CheckCompileSuccess(const std::string &path) const -> void;
+    auto PrintCompileLog(const std::string &path) const -> void;
 
 public:
-    Shader(const std::string &path, const unsigned int type);
+    Shader(const std::string &path, unsigned int type);
     ~Shader();
-    void Attach(const int programId) const;
+    auto Attach(int programId) const -> void;
 };

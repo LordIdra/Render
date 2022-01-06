@@ -1,30 +1,31 @@
 #include "Memory/VAO.h"
 
-#include "Logging/Logging.h"
+#include "Logging/logging.h"
 
 
 
 /* PUBLIC -------------------- */
-VAO::VAO() {}
+VAO::VAO()
+    : id_(0) {}
 
 void VAO::Init() {
     // Why does this exist? The reason is that if this was in the constructor, forward-declaring a variable
     // of type VAO would initialize that variable. Therefore, if we defined something like VAO vao; in the
     // main file, it would try to call the constructor before main() is called, so GLAD has not had a chance
     // to initialize and the glxxxx() commands would cause segmentation faults, which is NOT fun.
-    glGenVertexArrays(1, &id);
+    glGenVertexArrays(1, &id_);
     Bind();
-    vbo = VBO();
-    vbo.Init();
-    vbo.Bind();
+    vbo_ = VBO();
+    vbo_.Init();
+    vbo_.Bind();
     Unbind();
 }
 
 void VAO::Bind() const {
-    glBindVertexArray(id);
+    glBindVertexArray(id_);
 }
 
-void VAO::Unbind() const {
+void VAO::Unbind() {
     glBindVertexArray(0);
 }
 
@@ -37,6 +38,6 @@ void VAO::AddVertexAttribute(const VertexAttribute &attribute) const {
 
 void VAO::Data(const std::vector<float> &data) const {
     Bind();
-    glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof(float), &data[0], GL_DYNAMIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof(float), &data[0], GL_DYNAMIC_DRAW);  //NOLINT - a cast is necessary here, no risk of overflow
     Unbind();
 }
