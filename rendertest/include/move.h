@@ -5,9 +5,9 @@
 
 
 namespace move {
-    auto CheckLowerBounds(float &moveSpeedDirection) -> void;
-    auto CheckUpperBounds(float &moveSpeedDirection) -> void;
+    auto CheckLowerBounds(float &moveSpeedDirection, float accel) -> void;
+    auto CheckUpperBounds(float &moveSpeedDirection, float maxSpeed) -> void;
 
-    auto UpdateMoveSpeed(int increaseKey, int decreaseKey, float &moveSpeedDirection) -> bool;
+    auto UpdateMoveSpeed(int increaseKey, int decreaseKey, float &moveSpeedDirection, float accel) -> bool;
     auto Update(Camera &camera) -> void;
 }

@@ -1,3 +1,4 @@
+#include <cstdio>
 #include <vector>
 #include <iostream>
 #include <array>
@@ -17,7 +18,7 @@
 
 
 
-const int VIEW_DISTANCE = 9;
+const int VIEW_DISTANCE = 5;
 
 
 

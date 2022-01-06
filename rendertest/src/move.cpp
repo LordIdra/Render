@@ -7,27 +7,27 @@
 namespace move {
     namespace {
         const glm::vec2 MOVE_SENSITIVIY = glm::vec2(0.1, 0.1);
-        const glm::vec2 MOVE_ACCELERATION = glm::vec2(1.0, 1.0);
-        const glm::vec2 MAX_MOVE_SPEED = glm::vec2(4.0, 4.0);
+        const glm::vec2 MOVE_ACCELERATION = glm::vec2(0.5, 3.0);
+        const glm::vec2 MAX_MOVE_SPEED = glm::vec2(4.0, 40.0);
 
         glm::vec2 moveSpeed = glm::vec2(0.0, 0.0);
     }
 
-    auto CheckLowerBounds(float &moveSpeedDirection) -> void {
+    auto CheckLowerBounds(float &moveSpeedDirection, float accel) -> void {
         const float THRESHOLD_DIVISOR = 2.0;
-        if      (moveSpeedDirection >  (MOVE_ACCELERATION.x/THRESHOLD_DIVISOR)) { moveSpeedDirection -= MOVE_ACCELERATION.x; }
-        else if (moveSpeedDirection < -(MOVE_ACCELERATION.x/THRESHOLD_DIVISOR)) { moveSpeedDirection += MOVE_ACCELERATION.x; }
+        if      (moveSpeedDirection >  (accel/THRESHOLD_DIVISOR)) { moveSpeedDirection -= MOVE_ACCELERATION.x; }
+        else if (moveSpeedDirection < -(accel/THRESHOLD_DIVISOR)) { moveSpeedDirection += MOVE_ACCELERATION.x; }
         else                                                                    { moveSpeedDirection = 0; }
     }
 
-    auto CheckUpperBounds(float &moveSpeedDirection) -> void{
-        if      (moveSpeedDirection >  (MAX_MOVE_SPEED.x))  { moveSpeedDirection = MAX_MOVE_SPEED.x; }
-        else if (moveSpeedDirection < -(MAX_MOVE_SPEED.x))  { moveSpeedDirection = -MAX_MOVE_SPEED.x; }
+    auto CheckUpperBounds(float &moveSpeedDirection, float maxSpeed) -> void{
+        if      (moveSpeedDirection >  (maxSpeed))  { moveSpeedDirection = maxSpeed; }
+        else if (moveSpeedDirection < -(maxSpeed))  { moveSpeedDirection = -maxSpeed; }
     }
 
-    auto UpdateMoveSpeed(int increaseKey, int decreaseKey, float &moveSpeedDirection) -> bool{
-        if      (keys::KeyHeldDown(increaseKey))    { moveSpeedDirection += MOVE_ACCELERATION.x; }
-        if      (keys::KeyHeldDown(decreaseKey))    { moveSpeedDirection -= MOVE_ACCELERATION.x; }
+    auto UpdateMoveSpeed(int increaseKey, int decreaseKey, float &moveSpeedDirection, float accel) -> bool {
+        if      (keys::KeyHeldDown(increaseKey))    { moveSpeedDirection += accel; }
+        if      (keys::KeyHeldDown(decreaseKey))    { moveSpeedDirection -= accel; }
 
         return (keys::KeyHeldDown(increaseKey) || keys::KeyHeldDown(decreaseKey));
     }
@@ -39,13 +39,13 @@ namespace move {
         camera.AddTargetX(MOVE_SENSITIVIY.y * moveSpeed.y * sinf(camera.GetThetaXZ()));
         camera.AddTargetZ(MOVE_SENSITIVIY.y * moveSpeed.y * -cosf(camera.GetThetaXZ()));
 
-        const bool moveSpeedUpdatedX = UpdateMoveSpeed(GLFW_KEY_W, GLFW_KEY_S, moveSpeed.x);
-        const bool moveSpeedUpdatedZ = UpdateMoveSpeed(GLFW_KEY_D, GLFW_KEY_A, moveSpeed.y);
+        const bool moveSpeedUpdatedX = UpdateMoveSpeed(GLFW_KEY_W, GLFW_KEY_S, moveSpeed.x, MOVE_ACCELERATION.x);
+        const bool moveSpeedUpdatedY = UpdateMoveSpeed(GLFW_KEY_D, GLFW_KEY_A, moveSpeed.y, MOVE_ACCELERATION.y);
 
-        if (!moveSpeedUpdatedX) { CheckLowerBounds(moveSpeed.x); }
-        if (!moveSpeedUpdatedZ) { CheckLowerBounds(moveSpeed.y); }
+        if (!moveSpeedUpdatedX) { CheckLowerBounds(moveSpeed.x, MOVE_ACCELERATION.x); }
+        if (!moveSpeedUpdatedY) { CheckLowerBounds(moveSpeed.y, MOVE_ACCELERATION.y); }
 
-        CheckUpperBounds(moveSpeed.x);
-        CheckUpperBounds(moveSpeed.y);
+        if (moveSpeedUpdatedX) { CheckUpperBounds(moveSpeed.x, MAX_MOVE_SPEED.x); }
+        if (moveSpeedUpdatedY) { CheckUpperBounds(moveSpeed.y, MAX_MOVE_SPEED.y); }
     }
 }

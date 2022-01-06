@@ -7,6 +7,7 @@
 
 
 namespace indices {
+
     enum Direction {
         north,
         east,
