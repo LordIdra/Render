@@ -3,48 +3,50 @@
 
 
 
-const int Chunk::CHUNK_VERTEX_COUNT = 8;
-const float Chunk::CHUNK_VERTEX_SPACING = 0.6;
-const float Chunk::CHUNK_SIZE = CHUNK_VERTEX_COUNT*CHUNK_VERTEX_SPACING;
+const int Chunk::VERTEX_COUNT = 8;
+const float Chunk::VERTEX_SPACING = 0.6;
+const float Chunk::SIZE = VERTEX_COUNT * VERTEX_SPACING;
+
+
 
 Chunk::Chunk(const std::vector<std::vector<Vertex>> &initialVertices) 
     : vertices_(initialVertices) {}
 
 //IMPORTANT this generates all the 'Vertex' objects in the chunk. It is NOT related to OpenGL vertices
-auto Chunk::GenerateChunkVertices(const int chunkX, const int chunkY, const glm::vec4 color) -> std::vector<std::vector<Vertex>> {
+auto Chunk::GenerateChunkVertices(const int chunkX, const int chunkY, const Color color) -> std::vector<std::vector<Vertex>> {
     std::vector<std::vector<Vertex>> vertices;
 
-    const float chunkCoordinateX = Chunk::CHUNK_VERTEX_SPACING * (float)(Chunk::CHUNK_VERTEX_COUNT) * (float)chunkX;
-    const float chunkCoordinateY = Chunk::CHUNK_VERTEX_SPACING * (float)(Chunk::CHUNK_VERTEX_COUNT) * (float)chunkY;
+    const float chunkCoordinateX = Chunk::VERTEX_SPACING * (float)(Chunk::VERTEX_COUNT) * (float)chunkX;
+    const float chunkCoordinateY = Chunk::VERTEX_SPACING * (float)(Chunk::VERTEX_COUNT) * (float)chunkY;
 
-    for (int x = 0; x < Chunk::CHUNK_VERTEX_COUNT; x+=2) {
+    for (int x = 0; x < Chunk::VERTEX_COUNT; x+=2) {
         vertices.emplace_back();
         vertices.emplace_back();
 
-        for (int y = 0; y < Chunk::CHUNK_VERTEX_COUNT; y++) {
+        for (int y = 0; y < Chunk::VERTEX_COUNT; y++) {
             vertices[x].push_back(
                 Vertex{
-                    .position = glm::vec3(
-                        chunkCoordinateX + float(x)*Chunk::CHUNK_VERTEX_SPACING,
+                    .position = WorldCoord(
+                        chunkCoordinateX + float(x)*Chunk::VERTEX_SPACING,
                         (float)(rand() % 100)/200.0,
-                        chunkCoordinateY + float(y)*Chunk::CHUNK_VERTEX_SPACING),
+                        chunkCoordinateY + float(y)*Chunk::VERTEX_SPACING),
                     .color = color});
         }
 
-        for (int y = 0; y < Chunk::CHUNK_VERTEX_COUNT; y++) {
+        for (int y = 0; y < Chunk::VERTEX_COUNT; y++) {
             vertices[x+1].push_back(
                 Vertex{
-                    .position = glm::vec3(
-                        chunkCoordinateX + float(x)*Chunk::CHUNK_VERTEX_SPACING + Chunk::CHUNK_VERTEX_SPACING,
+                    .position = WorldCoord(
+                        chunkCoordinateX + float(x)*Chunk::VERTEX_SPACING + Chunk::VERTEX_SPACING,
                         (float)(rand() % 100)/200.0,
-                        chunkCoordinateY + float(y)*Chunk::CHUNK_VERTEX_SPACING + Chunk::CHUNK_VERTEX_SPACING/2),
+                        chunkCoordinateY + float(y)*Chunk::VERTEX_SPACING + Chunk::VERTEX_SPACING/2),
                     .color = color});
         }
     }
     return vertices;
 }
 
-auto Chunk::SetColor(glm::vec4 color) -> void {
+auto Chunk::SetColor(Color color) -> void {
     for (std::vector<Vertex> &vertexArray : vertices_) {
         for (Vertex &vertex : vertexArray) {
             vertex.color = color;

@@ -9,10 +9,11 @@
 
 #include <iostream>
 #include "glm/gtx/string_cast.hpp"
+#include "units.h"
 
 
 
-void Visualiser::PrepareChunks(const std::vector<std::array<int, 2>> &chunkCoordinates) {
+void Visualiser::PrepareChunks(const std::vector<ChunkCoord> &chunkCoordinates) {
     vertices_ = terrainStorage_->GetAllVertices(chunkCoordinates);
     indices_ = indices::GetAllIndices(terrainStorage_, chunkCoordinates);
 }
@@ -50,7 +51,7 @@ Visualiser::Visualiser(Camera *camera, TerrainStorage *terrainStorage)
     program_.Link();
 }
 
-void Visualiser::Update(const std::vector<std::array<int, 2>> &chunkCoordinates) {
+void Visualiser::Update(const std::vector<ChunkCoord> &chunkCoordinates) {
     glm::mat4 projection = camera_->GetProjection();
     glm::mat4 view = camera_->GetView();
     program_.Use();

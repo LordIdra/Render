@@ -12,6 +12,7 @@
 #include "TerrainStorage.h"
 #include "debug.h"
 #include "move.h"
+#include "units.h"
 #include "zoom.h"
 #include "Visualiser.h"
 #include "Init/init.h"
@@ -22,8 +23,8 @@ const int VIEW_DISTANCE = 5;
 
 
 
-void GenerateChunks(TerrainStorage &terrainStorage, const std::vector<std::array<int, 2>> &chunks) {
-    for (const std::array<int, 2> chunk : chunks) {
+void GenerateChunks(TerrainStorage &terrainStorage, const std::vector<ChunkCoord> &chunks) {
+    for (const ChunkCoord chunk : chunks) {
         terrainStorage.GenerateChunk(chunk[0], chunk[1]);
     }
 }
@@ -34,12 +35,12 @@ void CheckWindowCloseKey() {
 
 void Mainloop(TerrainStorage &terrainStorage, Camera &camera, Visualiser &visualiser) {
     while (!window::ShouldClose()) {
-        const glm::vec3 TARGET = camera.GetTarget();
+        const WorldCoord TARGET = camera.GetTarget();
         move::Update(camera);
         zoom::Update(camera);
         mouse::Update();
         debug::Update();
-        terrainStorage.GenerateChunksInRadius(TARGET.x, TARGET.z, VIEW_DISTANCE);   // we use target.z here since it's a vec3, not a vec2
+        terrainStorage.GenerateChunksInRadius(TARGET.x, TARGET.z, VIEW_DISTANCE);   // we use target.z here since it's 3 a dimensional vector
         visualiser.Update(TerrainStorage::GetChunkCoordinatesInRadius(TARGET.x, TARGET.z, VIEW_DISTANCE));
         camera.Update();
         window::Update();
@@ -54,7 +55,7 @@ auto main() -> int {
         .maxThetaXY = 1.5,
         .fieldOfView = 0.78,
         .near = 0.1,
-        .far = 100.0,
+        .far = 200.0,
         .minZoom = 5.0,
         .maxZoom = 50.0
     };

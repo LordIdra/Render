@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include "units.h"
 #include "Geometry/Vertex.h"
 
 
@@ -71,15 +72,15 @@ private:
     std::vector<std::vector<Vertex>> vertices_;
 
 public:
-    static const int CHUNK_VERTEX_COUNT;
-    static const float CHUNK_VERTEX_SPACING;
-    static const float CHUNK_SIZE;
+    static const int VERTEX_COUNT;
+    static const float VERTEX_SPACING;
+    static const float SIZE;
     
     Chunk() = default;
     Chunk(const std::vector<std::vector<Vertex>> &initialVertices);
 
-    static auto GenerateChunkVertices(int chunkX, int chunkY, glm::vec4 color) -> std::vector<std::vector<Vertex>>;
+    static auto GenerateChunkVertices(int chunkX, int chunkY, Color color) -> std::vector<std::vector<Vertex>>;
 
-    auto SetColor(glm::vec4 color) -> void;
+    auto SetColor(Color color) -> void;
     [[nodiscard]] auto GetVertices() const ->  std::vector<Vertex>;
 };

@@ -12,26 +12,26 @@ auto TerrainStorage::Distance(float x1, float y1, float x2, float y2) {
     return sqrtf(((x1-x2)*(x1-x2)) + ((y1-y2)*(y1-y2)));
 }
 
-auto TerrainStorage::CreateSquare(std::vector<std::array<int, 2>> &squareChunks, const std::array<int, 2> centreChunk, const int radius) -> void {
-    std::array<int, 2> minimumChunk = {centreChunk[0] - radius, centreChunk[1] - radius};
-    std::array<int, 2> maximumChunk = {centreChunk[0] + radius, centreChunk[1] + radius};
+auto TerrainStorage::CreateSquare(std::vector<ChunkCoord> &squareChunks, const ChunkCoord centreChunk, const int radius) -> void {
+    ChunkCoord minimumChunk = {centreChunk[0] - radius, centreChunk[1] - radius};
+    ChunkCoord maximumChunk = {centreChunk[0] + radius, centreChunk[1] + radius};
     for (int x = minimumChunk[0]; x <= maximumChunk[0]; x++) {
         for (int y = minimumChunk[1]; y <= maximumChunk[1]; y++) {
-            squareChunks.push_back(std::array<int, 2> {x, y});
+            squareChunks.push_back(ChunkCoord {x, y});
         }
     }
 }
 
-auto TerrainStorage::ConvertWorldCoordinatesToChunkCoordinates(const float x, const float y) -> std::array<int, 2> {
+auto TerrainStorage::ConvertWorldCoordinatesToChunkCoordinates(const float x, const float y) -> ChunkCoord {
     // we don't truncate to int here because int truncates towards 0, while floor truncates towards negative infinity
-    const int CHUNK_X = std::floor((x/Chunk::CHUNK_SIZE));
-    const int CHUNK_Y = std::floor((y/Chunk::CHUNK_SIZE));
-    return std::array<int, 2> {CHUNK_X, CHUNK_Y};
+    const int CHUNK_X = std::floor((x/Chunk::SIZE));
+    const int CHUNK_Y = std::floor((y/Chunk::SIZE));
+    return ChunkCoord {CHUNK_X, CHUNK_Y};
 }
 
-auto TerrainStorage::GetChunkCoordinatesInSquare(const float worldX, const float worldY, const int radius) -> std::vector<std::array<int, 2>> {
-    std::array<int, 2> centreChunk = ConvertWorldCoordinatesToChunkCoordinates(worldX, worldY);
-    std::vector<std::array<int, 2>> squareChunks;
+auto TerrainStorage::GetChunkCoordinatesInSquare(const float worldX, const float worldY, const int radius) -> std::vector<ChunkCoord> {
+    ChunkCoord centreChunk = ConvertWorldCoordinatesToChunkCoordinates(worldX, worldY);
+    std::vector<ChunkCoord> squareChunks;
     CreateSquare(squareChunks, centreChunk, radius);
     return squareChunks;
 }
@@ -59,11 +59,11 @@ auto TerrainStorage::DeleteChunk(const int chunkX, const int chunkY) -> void {
 
 
 /* PUBLIC -------------------- */
-auto TerrainStorage::GetChunkCoordinatesInRadius(const float worldX, const float worldY, const int radius) -> std::vector<std::array<int, 2>> {
-    std::array<int, 2> chunkCoords = ConvertWorldCoordinatesToChunkCoordinates(worldX, worldY);
-    std::vector<std::array<int, 2>> squareChunkCoordinates = GetChunkCoordinatesInSquare(worldX, worldY, radius);
-    std::vector<std::array<int, 2>> circleChunkCoordinates;
-    for (std::array<int, 2> coordinates : squareChunkCoordinates) {
+auto TerrainStorage::GetChunkCoordinatesInRadius(const float worldX, const float worldY, const int radius) -> std::vector<ChunkCoord> {
+    ChunkCoord chunkCoords = ConvertWorldCoordinatesToChunkCoordinates(worldX, worldY);
+    std::vector<ChunkCoord> squareChunkCoordinates = GetChunkCoordinatesInSquare(worldX, worldY, radius);
+    std::vector<ChunkCoord> circleChunkCoordinates;
+    for (ChunkCoord coordinates : squareChunkCoordinates) {
         float distance = Distance((float)coordinates[0], (float)coordinates[1], (float)chunkCoords[0], (float)chunkCoords[1]);
         if (distance <= (float)radius) {
             circleChunkCoordinates.push_back(coordinates);
@@ -86,7 +86,7 @@ auto TerrainStorage::GenerateChunk(const int chunkX, const int chunkY) -> void {
 }
 
 auto TerrainStorage::GenerateChunksInRadius(const float worldX, const float worldY, const int radius) -> void {
-    for (std::array<int, 2> coord : GetChunkCoordinatesInRadius(worldX, worldY, radius)) {
+    for (ChunkCoord coord : GetChunkCoordinatesInRadius(worldX, worldY, radius)) {
         GenerateChunk(coord[0], coord[1]);
     }
 }
@@ -100,9 +100,9 @@ auto TerrainStorage::ChunkExists(const int chunkX, const int chunkY) const -> bo
     return false;
 }
 
-auto TerrainStorage::GetAllVertices(const std::vector<std::array<int, 2>> &chunksToRender) -> std::vector<Vertex> {
+auto TerrainStorage::GetAllVertices(const std::vector<ChunkCoord> &chunksToRender) -> std::vector<Vertex> {
     std::vector<Vertex> vertices;
-    for (const std::array<int, 2> chunkCoordinates : chunksToRender) {
+    for (const ChunkCoord chunkCoordinates : chunksToRender) {
         const std::vector<Vertex> chunkVertices = GetVertices(chunkCoordinates[0], chunkCoordinates[1]);
         vertices.insert(vertices.end(), chunkVertices.begin(), chunkVertices.end());
     }

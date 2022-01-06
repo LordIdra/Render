@@ -19,9 +19,9 @@ private:
     Camera *const camera_;
     TerrainStorage *const terrainStorage_;
 
-    void PrepareChunks(const std::vector<std::array<int, 2>> &chunkCoordinates);
+    void PrepareChunks(const std::vector<ChunkCoord> &chunkCoordinates);
     
 public:
     Visualiser(Camera *camera, TerrainStorage *terrainStorage);
-    void Update(const std::vector<std::array<int, 2>> &chunkCoordinates);
+    void Update(const std::vector<ChunkCoord> &chunkCoordinates);
 };
