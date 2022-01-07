@@ -1,10 +1,10 @@
 #pragma once
 
 #include <vector>
-#include "Memory/VertexAttribute.h"
+#include "VertexAttribute.h"
 #include "Vertex.h"
-#include "../Memory/VAO.h"
-#include "../Memory/EBO.h"
+#include "VAO.h"
+#include "EBO.h"
 
 
 

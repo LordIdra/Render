@@ -1,6 +1,6 @@
-#include "Memory/EBO.h"
+#include "EBO.h"
 
-#include "Logging/logging.h"
+#include "logging.h"
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 

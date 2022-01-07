@@ -1,9 +1,9 @@
-#include "Shaders/Shader.h"
+#include "Shader.h"
 #include "Visualiser.h"
 
-#include "Camera/Camera.h"
-#include "Camera/CameraSettings.h"
-#include "Geometry/Geometry.h"
+#include "Camera.h"
+#include "CameraSettings.h"
+#include "Geometry.h"
 #include "TerrainStorage.h"
 #include "indices.h"
 

@@ -1,6 +1,6 @@
-#include "Memory/VAO.h"
+#include "VAO.h"
 
-#include "Logging/logging.h"
+#include "logging.h"
 
 
 

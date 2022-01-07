@@ -1,6 +1,6 @@
 #include "move.h"
 
-#include "Input/keys.h"
+#include "keys.h"
 
 
 

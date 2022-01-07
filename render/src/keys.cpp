@@ -1,5 +1,5 @@
-#include "Input/keys.h"
-#include "Window/window.h"
+#include "keys.h"
+#include "window.h"
 
 
 

@@ -2,9 +2,9 @@
 
 #include <vector>
 #include <array>
-#include "Camera/Camera.h"
-#include "Geometry/Geometry.h"
-#include "Shaders/Program.h"
+#include "Camera.h"
+#include "Geometry.h"
+#include "Program.h"
 #include "TerrainStorage.h"
 
 

@@ -3,23 +3,21 @@
 #include <iostream>
 #include <array>
 
-#include "Camera/Camera.h"
-#include "Camera/CameraSettings.h"
-#include "Input/mouse.h"
-#include "Input/keys.h"
+#include "mouse.h"
+#include "keys.h"
 
-#include "Logging/logging.h"
+#include "logging.h"
 #include "TerrainStorage.h"
-#include "debug.h"
+#include "visualdebug.h"
 #include "move.h"
 #include "units.h"
 #include "zoom.h"
 #include "Visualiser.h"
-#include "Init/init.h"
+#include "init.h"
 
 
 
-const int VIEW_DISTANCE = 5;
+const int VIEW_DISTANCE = 9;
 
 
 
@@ -39,7 +37,7 @@ void Mainloop(TerrainStorage &terrainStorage, Camera &camera, Visualiser &visual
         move::Update(camera);
         zoom::Update(camera);
         mouse::Update();
-        debug::Update();
+        visualdebug::Update();
         terrainStorage.GenerateChunksInRadius(TARGET.x, TARGET.z, VIEW_DISTANCE);   // we use target.z here since it's 3 a dimensional vector
         visualiser.Update(TerrainStorage::GetChunkCoordinatesInRadius(TARGET.x, TARGET.z, VIEW_DISTANCE));
         camera.Update();
@@ -50,6 +48,9 @@ void Mainloop(TerrainStorage &terrainStorage, Camera &camera, Visualiser &visual
 }
 
 auto main() -> int {
+    #ifdef TRACY_ENABLE 
+        std::cout << "hello";
+    #endif
     init::Initialize("Terrain Test");
     CameraSettings cameraSettings = {
         .maxThetaXY = 1.5,

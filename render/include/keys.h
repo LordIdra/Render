@@ -3,7 +3,7 @@
 #include <unordered_map>
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
-#include "Window/window.h"
+#include "window.h"
 
 
 

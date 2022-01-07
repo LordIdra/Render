@@ -5,18 +5,18 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(src_files
-    "src/Camera/Camera.cpp"
-    "src/Init/init.cpp"
-    "src/Geometry/Geometry.cpp"
-    "src/Input/mouse.cpp"
-    "src/Input/keys.cpp"
-    "src/Logging/logging.cpp"
-    "src/Memory/EBO.cpp"
-    "src/Memory/VBO.cpp"
-    "src/Memory/VAO.cpp"
-    "src/Shaders/Shader.cpp"
-    "src/Shaders/Program.cpp"
-    "src/Window/window.cpp"
+    "src/Camera.cpp"
+    "src/init.cpp"
+    "src/Geometry.cpp"
+    "src/mouse.cpp"
+    "src/keys.cpp"
+    "src/logging.cpp"
+    "src/EBO.cpp"
+    "src/VBO.cpp"
+    "src/VAO.cpp"
+    "src/Shader.cpp"
+    "src/Program.cpp"
+    "src/window.cpp"
 )
 
 set(CMAKE_TOOLCHAIN_FILE "/opt/vcpkg/scripts/buildsystems/vcpkg.cmake")

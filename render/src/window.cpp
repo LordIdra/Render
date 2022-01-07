@@ -1,6 +1,6 @@
-#include "Window/window.h"
+#include "window.h"
 
-#include "Logging/logging.h"
+#include "logging.h"
 #include <GLFW/glfw3.h>
 
 

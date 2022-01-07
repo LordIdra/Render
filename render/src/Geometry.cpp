@@ -1,6 +1,6 @@
-#include "Geometry/Geometry.h"
+#include "Geometry.h"
 
-#include "Window/window.h"
+#include "window.h"
 
 
 

@@ -1,5 +1,5 @@
 #include "TerrainStorage.h"
-#include "Logging/logging.h"
+#include "logging.h"
 #include <array>
 #include <cmath>
 #include <iostream>
@@ -17,7 +17,7 @@ auto TerrainStorage::CreateSquare(std::vector<ChunkCoord> &squareChunks, const C
     ChunkCoord maximumChunk = {centreChunk[0] + radius, centreChunk[1] + radius};
     for (int x = minimumChunk[0]; x <= maximumChunk[0]; x++) {
         for (int y = minimumChunk[1]; y <= maximumChunk[1]; y++) {
-            squareChunks.push_back(ChunkCoord {x, y});
+            squareChunks.emplace_back(x, y);
         }
     }
 }

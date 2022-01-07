@@ -1,11 +1,11 @@
-#include "debug.h"
+#include "visualdebug.h"
 
-#include "Geometry/Geometry.h"
-#include "Input/keys.h"
+#include "Geometry.h"
+#include "keys.h"
 
 
 
-namespace debug {
+namespace visualdebug {
     namespace {
         bool wireframeMode;
     }

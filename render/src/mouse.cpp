@@ -1,4 +1,4 @@
-#include "Input/mouse.h"
+#include "mouse.h"
 
 #include <iostream>
 

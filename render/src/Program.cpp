@@ -1,6 +1,6 @@
-#include "Shaders/Program.h"
+#include "Program.h"
 
-#include "Logging/logging.h"
+#include "logging.h"
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 #include <array>

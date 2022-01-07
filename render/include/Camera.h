@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CameraSettings.h"
-#include "Window/window.h"
+#include "window.h"
 #include "glm/glm.hpp"
 
 

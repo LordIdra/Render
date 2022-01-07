@@ -1,9 +1,9 @@
-#include "Init/init.h"
+#include "init.h"
 
-#include "Logging/logging.h"
-#include "Input/keys.h"
-#include "Input/mouse.h"
-#include "Window/window.h"
+#include "logging.h"
+#include "keys.h"
+#include "mouse.h"
+#include "window.h"
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
