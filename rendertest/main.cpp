@@ -48,9 +48,6 @@ void Mainloop(TerrainStorage &terrainStorage, Camera &camera, Visualiser &visual
 }
 
 auto main() -> int {
-    #ifdef TRACY_ENABLE 
-        std::cout << "hello";
-    #endif
     init::Initialize("Terrain Test");
     CameraSettings cameraSettings = {
         .maxThetaXY = 1.5,
