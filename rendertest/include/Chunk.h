@@ -72,9 +72,9 @@ private:
     std::vector<std::vector<Vertex>> vertices_;
 
 public:
-    static const int VERTEX_COUNT;
-    static const float VERTEX_SPACING;
-    static const float SIZE;
+    static const int VERTEX_COUNT = 8;
+    static constexpr float VERTEX_SPACING = 0.6;
+    static constexpr float SIZE = VERTEX_COUNT * VERTEX_SPACING;
     
     Chunk() = default;
     Chunk(const std::vector<std::vector<Vertex>> &initialVertices);

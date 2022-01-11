@@ -3,12 +3,6 @@
 
 
 
-const int Chunk::VERTEX_COUNT = 8;
-const float Chunk::VERTEX_SPACING = 0.6;
-const float Chunk::SIZE = VERTEX_COUNT * VERTEX_SPACING;
-
-
-
 Chunk::Chunk(const std::vector<std::vector<Vertex>> &initialVertices) 
     : vertices_(initialVertices) {}
 

@@ -13,6 +13,7 @@ set(src_files
     "src/indices.cpp"
     "src/move.cpp"
     "src/Visualiser.cpp"
+    "src/terrain_generator.cpp"
     "src/TerrainStorage.cpp"
     "src/zoom.cpp"
 )

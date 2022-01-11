@@ -8,6 +8,7 @@
 
 #include "logging.h"
 #include "TerrainStorage.h"
+#include "terrain_generator.h"
 #include "visualdebug.h"
 #include "move.h"
 #include "units.h"
@@ -59,6 +60,7 @@ auto main() -> int {
     };
     Camera camera(cameraSettings);
     TerrainStorage terrainStorage;
+    terrain_generator::Initialize(1);
     camera.SetTarget(0.0, 0.0, 0.0);
     mouse::Hide();
     Visualiser visualiser(&camera, &terrainStorage);

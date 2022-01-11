@@ -4,9 +4,10 @@
 
 
 
-using Color      = glm::vec4;
-using WorldCoord = glm::vec3;
-using ChunkCoord = glm::ivec2;
+using Color       = glm::vec4;
+using WorldCoord  = glm::vec3;
+using ChunkCoord  = glm::ivec2;
+using ChunkCorner = glm::ivec2;
 
 enum Direction {
     north,
