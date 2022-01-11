@@ -13,31 +13,37 @@
 
 namespace terrain_generator {
     namespace {
-        std::vector<std::vector<glm::vec2>> gradients;
+        std::vector<std::vector<Gradient>> gradients;
 
-        const int GRADIENT_CONTAINER_CHUNKS = 8;
-        constexpr int GRADIENT_CONTAINER_SIZE = Chunk::VERTEX_COUNT * GRADIENT_CHUNKS;
+        const int GRADIENT_CONTAINER_CHUNK_COUNT = 8;
+        constexpr int GRADIENT_CONTAINER_SIZE = Chunk::VERTEX_COUNT * GRADIENT_CONTAINER_CHUNK_COUNT;
 
-        auto GenerateRandomGradient() -> glm::vec2 {
+        auto GenerateRandomGradient() -> Gradient {
             float rotationInRadians = glm::radians((float)(std::rand() % 360));
             glm::mat4 rotationMatrix = glm::rotate(glm::mat4(1), rotationInRadians, glm::vec3(0, 0, 1));
             return rotationMatrix * glm::vec4(1, 0, 0, 1);
         }
 
-        auto PopulateGradientVector(std::vector<std::vector<glm::vec2>> &numberSet) -> void {
-            for (int i = 0; i < SIZE; i++) {
+        auto PopulateGradientVector(std::vector<std::vector<Gradient>> &numberSet) -> void {
+            for (int i = 0; i < GRADIENT_CONTAINER_SIZE; i++) {
                 numberSet.emplace_back();
-                for (int i = 0; i < SIZE; i++) {
+                for (int i = 0; i < GRADIENT_CONTAINER_SIZE; i++) {
                     numberSet[numberSet.size()-1].emplace_back(GenerateRandomGradient());
                 }
             }
         }
 
-        auto GenerateGradients() -> std::vector<std::vector<glm::vec2>> {
-            std::vector<std::vector<glm::vec2>> numberSet;
+        auto GenerateGradients() -> std::vector<std::vector<Gradient>> {
+            std::vector<std::vector<Gradient>> numberSet;
             numberSet.reserve(GRADIENT_CONTAINER_SIZE);
             PopulateGradientVector(numberSet);
             return numberSet;
+        }
+
+        auto GetGradient(const ChunkCorner corner) -> Gradient {
+            // normalized so it can be used to index the gradient vector table
+            glm::ivec2 normalizedCorner{corner.x % (GRADIENT_CONTAINER_SIZE), corner.y % (GRADIENT_CONTAINER_SIZE)};
+            return gradients[normalizedCorner.x][normalizedCorner.y];
         }
     }
 
@@ -46,7 +52,9 @@ namespace terrain_generator {
         gradients = GenerateGradients();
     }
 
-    auto GetGradient(const ChunkCorner corner) -> float {
-        corner.x %= (GRADIENT_CONTAINER_SIZE);
+    auto GetHeight(ChunkCoord chunkCoord, WorldCoord worldCoord) {
+        // get chunk corners
+        // dot product thing
+        // world domination
     }
 }
