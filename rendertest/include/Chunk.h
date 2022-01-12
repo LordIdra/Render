@@ -79,7 +79,7 @@ public:
     Chunk() = default;
     Chunk(const std::vector<std::vector<Vertex>> &initialVertices);
 
-    static auto GenerateChunkVertices(int chunkX, int chunkY, Color color) -> std::vector<std::vector<Vertex>>;
+    static auto GenerateChunkVertices(const ChunkCoord &coord, Color color) -> std::vector<std::vector<Vertex>>;
 
     auto SetColor(Color color) -> void;
     [[nodiscard]] auto GetVertices() const ->  std::vector<Vertex>;

@@ -1,5 +1,6 @@
 #include "TerrainStorage.h"
 #include "logging.h"
+#include "units.h"
 #include <array>
 #include <cmath>
 #include <iostream>
@@ -22,46 +23,46 @@ auto TerrainStorage::CreateSquare(std::vector<ChunkCoord> &squareChunks, const C
     }
 }
 
-auto TerrainStorage::ConvertWorldCoordinatesToChunkCoordinates(const float x, const float y) -> ChunkCoord {
+auto TerrainStorage::ConvertWorldCoordinatesToChunkCoordinates(const WorldCoord coord) -> ChunkCoord {
     // we don't truncate to int here because int truncates towards 0, while floor truncates towards negative infinity
-    const int CHUNK_X = std::floor((x/Chunk::SIZE));
-    const int CHUNK_Y = std::floor((y/Chunk::SIZE));
-    return ChunkCoord {CHUNK_X, CHUNK_Y};
+    const int chunkX = std::floor((coord.x/Chunk::SIZE));
+    const int chunkY = std::floor((coord.y/Chunk::SIZE));
+    return ChunkCoord {chunkX, chunkY};
 }
 
-auto TerrainStorage::GetChunkCoordinatesInSquare(const float worldX, const float worldY, const int radius) -> std::vector<ChunkCoord> {
-    ChunkCoord centreChunk = ConvertWorldCoordinatesToChunkCoordinates(worldX, worldY);
+auto TerrainStorage::GetChunkCoordinatesInSquare(const WorldCoord coord, const int radius) -> std::vector<ChunkCoord> {
+    ChunkCoord centreChunk = ConvertWorldCoordinatesToChunkCoordinates(coord);
     std::vector<ChunkCoord> squareChunks;
     CreateSquare(squareChunks, centreChunk, radius);
     return squareChunks;
 }
 
-auto TerrainStorage::GetChunk(const int chunkX, const int chunkY) -> Chunk* {
+auto TerrainStorage::GetChunk(const ChunkCoord coord) -> Chunk* {
     // callers are expected to do their own ChunkExists check, because if it returns
     // false, we'll want to handle it differently depending on the scenario
-    return &chunks_.at(chunkX).at(chunkY);
+    return &chunks_.at(coord);
 }
 
-auto TerrainStorage::GetVertices(const int x, const int y) const -> std::vector<Vertex>{
-    return chunks_.at(x).at(y).GetVertices();
+auto TerrainStorage::GetVertices(const ChunkCoord coord) const -> std::vector<Vertex>{
+    return chunks_.at(coord).GetVertices();
 }
 
-auto TerrainStorage::AddChunk(const int chunkX, const int chunkY, const Chunk &chunk) -> void {
-    chunks_[chunkX][chunkY] = chunk;
+auto TerrainStorage::AddChunk(const ChunkCoord coord, const Chunk &chunk) -> void {
+    chunks_[coord] = chunk;
 }
 
-auto TerrainStorage::DeleteChunk(const int chunkX, const int chunkY) -> void {
-    if (ChunkExists(chunkX, chunkY)) {
-        chunks_[chunkX].erase(chunkY);
+auto TerrainStorage::DeleteChunk(const ChunkCoord coord) -> void {
+    if (ChunkExists(coord)) {
+        chunks_.erase(coord);
     }
 }
 
 
 
 /* PUBLIC -------------------- */
-auto TerrainStorage::GetChunkCoordinatesInRadius(const float worldX, const float worldY, const int radius) -> std::vector<ChunkCoord> {
-    ChunkCoord chunkCoords = ConvertWorldCoordinatesToChunkCoordinates(worldX, worldY);
-    std::vector<ChunkCoord> squareChunkCoordinates = GetChunkCoordinatesInSquare(worldX, worldY, radius);
+auto TerrainStorage::GetChunkCoordinatesInRadius(const WorldCoord coord, const int radius) -> std::vector<ChunkCoord> {
+    ChunkCoord chunkCoords = ConvertWorldCoordinatesToChunkCoordinates(coord);
+    std::vector<ChunkCoord> squareChunkCoordinates = GetChunkCoordinatesInSquare(coord, radius);
     std::vector<ChunkCoord> circleChunkCoordinates;
     for (ChunkCoord coordinates : squareChunkCoordinates) {
         float distance = Distance((float)coordinates[0], (float)coordinates[1], (float)chunkCoords[0], (float)chunkCoords[1]);
@@ -77,22 +78,22 @@ auto TerrainStorage::GetChunkCoordinatesInRadius(const float worldX, const float
     //      if distance > radius, add the chunk to the list
 }
 
-auto TerrainStorage::GenerateChunk(const int chunkX, const int chunkY) -> void {
+auto TerrainStorage::GenerateChunk(const ChunkCoord coord) -> void {
     // IMPORTANT this does NOT generate a chunk if it already exists
     glm::vec4 color = glm::vec4(1.0, 1.0, 1.0, 1.0); //TODO remove this once a more permanent solution is in place (if ever lol)
-    if (!ChunkExists(chunkX, chunkY)) {
-        chunks_[chunkX][chunkY] = Chunk(Chunk::GenerateChunkVertices(chunkX, chunkY, color));
+    if (!ChunkExists(coord)) {
+        chunks_[coord] = Chunk(Chunk::GenerateChunkVertices(coord, color));
     }
 }
 
-auto TerrainStorage::GenerateChunksInRadius(const float worldX, const float worldY, const int radius) -> void {
-    for (ChunkCoord coord : GetChunkCoordinatesInRadius(worldX, worldY, radius)) {
-        GenerateChunk(coord[0], coord[1]);
+auto TerrainStorage::GenerateChunksInRadius(const WorldCoord coord, const int radius) -> void {
+    for (ChunkCoord coord : GetChunkCoordinatesInRadius(coord, radius)) {
+        GenerateChunk(coord);
     }
 }
 
-auto TerrainStorage::ChunkExists(const int chunkX, const int chunkY) const -> bool {
-    if (chunks_.count(chunkX) != 0) {
+auto TerrainStorage::ChunkExists(const ChunkCoord coord) const -> bool {
+    if (chunks_.find(coord) count(chunkX) != 0) {
         if (chunks_.at(chunkX).count(chunkY) != 0) {
             return true;
         }

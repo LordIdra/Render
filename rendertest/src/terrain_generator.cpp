@@ -5,6 +5,7 @@
 #include <glm/ext/matrix_transform.hpp>
 #include <glm/gtx/string_cast.hpp>
 #include <glm/trigonometric.hpp>
+#include <array>
 #include <vector>
 #include <cstdlib>
 #include "logging.h"
@@ -45,6 +46,16 @@ namespace terrain_generator {
             glm::ivec2 normalizedCorner{corner.x % (GRADIENT_CONTAINER_SIZE), corner.y % (GRADIENT_CONTAINER_SIZE)};
             return gradients[normalizedCorner.x][normalizedCorner.y];
         }
+
+        auto GetGradient(const glm::ivec2 corner) -> Gradient {
+            // normalized so it can be used to index the gradient vector table
+            glm::ivec2 normalizedCorner{corner.x % (GRADIENT_CONTAINER_SIZE), corner.y % (GRADIENT_CONTAINER_SIZE)};
+            return gradients[normalizedCorner.x][normalizedCorner.y];
+        }
+
+        auto GetChunkCorners(ChunkCoord chunkCoord) -> CornerSet {
+            
+        }
     }
 
     auto Initialize(const unsigned int seed) -> void {
@@ -53,8 +64,9 @@ namespace terrain_generator {
     }
 
     auto GetHeight(ChunkCoord chunkCoord, WorldCoord worldCoord) {
-        // get chunk corners
-        // dot product thing
-        // world domination
+        // TODO get chunk corners
+        CornerSet corners = GetChunkCorners(chunkCoord);
+        // TODO dot product thing
+        // TODO world domination
     }
 }

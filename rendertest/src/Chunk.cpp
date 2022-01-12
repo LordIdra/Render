@@ -1,4 +1,5 @@
 #include "Chunk.h"
+#include "units.h"
 #include <iostream>
 
 
@@ -7,11 +8,15 @@ Chunk::Chunk(const std::vector<std::vector<Vertex>> &initialVertices)
     : vertices_(initialVertices) {}
 
 //IMPORTANT this generates all the 'Vertex' objects in the chunk. It is NOT related to OpenGL vertices
-auto Chunk::GenerateChunkVertices(const int chunkX, const int chunkY, const Color color) -> std::vector<std::vector<Vertex>> {
+auto Chunk::GenerateChunkVertices(const ChunkCoord &coord, const Color color) -> std::vector<std::vector<Vertex>> {
     std::vector<std::vector<Vertex>> vertices;
 
-    const float chunkCoordinateX = Chunk::VERTEX_SPACING * (float)(Chunk::VERTEX_COUNT) * (float)chunkX;
-    const float chunkCoordinateY = Chunk::VERTEX_SPACING * (float)(Chunk::VERTEX_COUNT) * (float)chunkY;
+    const float chunkCoordinateX = Chunk::VERTEX_SPACING * (float)(Chunk::VERTEX_COUNT) * (float)coord.x;
+    const float chunkCoordinateY = Chunk::VERTEX_SPACING * (float)(Chunk::VERTEX_COUNT) * (float)coord.y;
+
+    const WorldCoord2 worldCoord(
+        Chunk::VERTEX_SPACING * (float)(Chunk::VERTEX_COUNT) * (float)coord.x,
+        Chunk::VERTEX_SPACING * (float)(Chunk::VERTEX_COUNT) * (float)coord.y);
 
     for (int x = 0; x < Chunk::VERTEX_COUNT; x+=2) {
         vertices.emplace_back();
