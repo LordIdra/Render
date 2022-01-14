@@ -1,5 +1,5 @@
 #include "Chunk.h"
-#include "units.h"
+#include "terrain_generator.h"
 #include <iostream>
 
 
@@ -14,7 +14,7 @@ auto Chunk::GenerateChunkVertices(const ChunkCoord &coord, const Color color) ->
     const float chunkCoordinateX = Chunk::VERTEX_SPACING * (float)(Chunk::VERTEX_COUNT) * (float)coord.x;
     const float chunkCoordinateY = Chunk::VERTEX_SPACING * (float)(Chunk::VERTEX_COUNT) * (float)coord.y;
 
-    const WorldCoord2 worldCoord(
+    const glm::vec2 worldCoord(
         Chunk::VERTEX_SPACING * (float)(Chunk::VERTEX_COUNT) * (float)coord.x,
         Chunk::VERTEX_SPACING * (float)(Chunk::VERTEX_COUNT) * (float)coord.y);
 
@@ -27,7 +27,7 @@ auto Chunk::GenerateChunkVertices(const ChunkCoord &coord, const Color color) ->
                 Vertex{
                     .position = WorldCoord(
                         chunkCoordinateX + float(x)*Chunk::VERTEX_SPACING,
-                        (float)(rand() % 100)/200.0,
+                        terrain_generator::GetHeight(coord, glm::vec2(0, 0)), //(float)(rand() % 100)/200.0,
                         chunkCoordinateY + float(y)*Chunk::VERTEX_SPACING),
                     .color = color});
         }
@@ -37,7 +37,7 @@ auto Chunk::GenerateChunkVertices(const ChunkCoord &coord, const Color color) ->
                 Vertex{
                     .position = WorldCoord(
                         chunkCoordinateX + float(x)*Chunk::VERTEX_SPACING + Chunk::VERTEX_SPACING,
-                        (float)(rand() % 100)/200.0,
+                        terrain_generator::GetHeight(coord, glm::vec2(0, 0)), //(float)(rand() % 100)/200.0,
                         chunkCoordinateY + float(y)*Chunk::VERTEX_SPACING + Chunk::VERTEX_SPACING/2),
                     .color = color});
         }

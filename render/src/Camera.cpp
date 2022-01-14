@@ -1,7 +1,9 @@
 #include "Camera.h"
 
 #include <iostream>
+#include <string>
 #include "glm/gtc/matrix_transform.hpp"
+#include "logging.h"
 
 
 

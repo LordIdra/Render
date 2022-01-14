@@ -9,6 +9,7 @@ set(src_files
     "main.cpp"
     "../tracy/TracyClient.cpp"
     "src/Chunk.cpp"
+    "src/ChunkMap.cpp"
     "src/visualdebug.cpp"
     "src/indices.cpp"
     "src/move.cpp"

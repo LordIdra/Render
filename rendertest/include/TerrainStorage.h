@@ -3,14 +3,15 @@
 #include <vector>
 #include <unordered_map>
 #include "Chunk.h"
-#include "units.h"
+#include "ChunkMap.h"
+#include "util.h"
 
 
 
 // Explanation of chunk system can be found in Chunk.h
 class TerrainStorage {
 private:
-    std::unordered_map<ChunkCoord, Chunk> chunks_;
+    ChunkMap chunks_;
 
     static auto Distance(float x1, float y1, float x2, float y2);
     static auto CreateSquare(std::vector<ChunkCoord> &squareChunks, ChunkCoord centreChunk, int radius) -> void;

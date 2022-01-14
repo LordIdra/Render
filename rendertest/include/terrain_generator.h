@@ -1,11 +1,11 @@
 #pragma once
 
-#include "units.h"
+#include "util.h"
 #include <vector>
 
 
 
 namespace terrain_generator {
     auto Initialize(unsigned int seed) -> void;
-    auto GetHeight(ChunkCoord chunkCoord, WorldCoord worldCoord);
+    auto GetHeight(ChunkCoord chunkCoord, glm::vec2 worldCoord) -> float;
 }

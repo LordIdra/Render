@@ -11,7 +11,6 @@
 #include "terrain_generator.h"
 #include "visualdebug.h"
 #include "move.h"
-#include "units.h"
 #include "zoom.h"
 #include "Visualiser.h"
 #include "init.h"
@@ -24,7 +23,7 @@ const int VIEW_DISTANCE = 9;
 
 void GenerateChunks(TerrainStorage &terrainStorage, const std::vector<ChunkCoord> &chunks) {
     for (const ChunkCoord chunk : chunks) {
-        terrainStorage.GenerateChunk(chunk[0], chunk[1]);
+        terrainStorage.GenerateChunk(chunk);
     }
 }
 
@@ -34,13 +33,13 @@ void CheckWindowCloseKey() {
 
 void Mainloop(TerrainStorage &terrainStorage, Camera &camera, Visualiser &visualiser) {
     while (!window::ShouldClose()) {
-        const WorldCoord TARGET = camera.GetTarget();
+        const WorldCoord target = camera.GetTarget();
         move::Update(camera);
         zoom::Update(camera);
         mouse::Update();
         visualdebug::Update();
-        terrainStorage.GenerateChunksInRadius(TARGET.x, TARGET.z, VIEW_DISTANCE);   // we use target.z here since it's 3 a dimensional vector
-        visualiser.Update(TerrainStorage::GetChunkCoordinatesInRadius(TARGET.x, TARGET.z, VIEW_DISTANCE));
+        terrainStorage.GenerateChunksInRadius(target, VIEW_DISTANCE);   // we use target.z here since it's 3 a dimensional vector
+        visualiser.Update(TerrainStorage::GetChunkCoordinatesInRadius(target, VIEW_DISTANCE));
         camera.Update();
         window::Update();
         CheckWindowCloseKey();
