@@ -17,7 +17,7 @@
 
 
 
-const int VIEW_DISTANCE = 9;
+const int VIEW_DISTANCE = 2;
 
 
 
@@ -33,13 +33,14 @@ void CheckWindowCloseKey() {
 
 void Mainloop(TerrainStorage &terrainStorage, Camera &camera, Visualiser &visualiser) {
     while (!window::ShouldClose()) {
-        const WorldCoord target = camera.GetTarget();
+        const WorldCoord targetWorldCoord = camera.GetTarget();
+        const PlaneCoord targetPlaneCoord = glm::vec2(targetWorldCoord.x, targetWorldCoord.z);
         move::Update(camera);
         zoom::Update(camera);
         mouse::Update();
         visualdebug::Update();
-        terrainStorage.GenerateChunksInRadius(target, VIEW_DISTANCE);   // we use target.z here since it's 3 a dimensional vector
-        visualiser.Update(TerrainStorage::GetChunkCoordinatesInRadius(target, VIEW_DISTANCE));
+        terrainStorage.GenerateChunksInRadius(targetPlaneCoord, VIEW_DISTANCE);   // we use target.z here since it's 3 a dimensional vector
+        visualiser.Update(TerrainStorage::GetChunkCoordinatesInRadius(targetPlaneCoord, VIEW_DISTANCE));
         camera.Update();
         window::Update();
         CheckWindowCloseKey();

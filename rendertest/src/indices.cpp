@@ -77,9 +77,9 @@ namespace indices {
     }
 
     auto GetRelativeCoords(const Direction direction, ChunkCoord coords) -> ChunkCoord {
-        if (direction == Direction::north)      { return ChunkCoord {coords[0], coords[1] + 1}; }
-        if (direction == Direction::east)       { return ChunkCoord {coords[0] + 1, coords[1]}; }
-        if (direction == Direction::northeast)  { return ChunkCoord {coords[0] + 1, coords[1] + 1}; }
+        if (direction == Direction::north)      { return ChunkCoord {coords.x, coords.y + 1}; }
+        if (direction == Direction::east)       { return ChunkCoord {coords.x + 1, coords.y}; }
+        if (direction == Direction::northeast)  { return ChunkCoord {coords.x + 1, coords.y + 1}; }
         return coords;
     }
 

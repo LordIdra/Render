@@ -72,13 +72,15 @@ private:
     std::vector<std::vector<Vertex>> vertices_;
 
 public:
-    static const int VERTEX_COUNT = 8;
-    static constexpr float VERTEX_SPACING = 0.6;
+    static const int VERTEX_COUNT = 64;
+    static constexpr float VERTEX_SPACING = 0.5;
     static constexpr float SIZE = VERTEX_COUNT * VERTEX_SPACING;
     
     Chunk() = default;
     Chunk(const std::vector<std::vector<Vertex>> &initialVertices);
 
+    static auto PlaneCoordToChunkCoord(PlaneCoord coord) -> ChunkCoord;
+    static auto ChunkCoordToPlaneCoord(ChunkCoord coord) -> PlaneCoord;
     static auto GenerateChunkVertices(const ChunkCoord &coord, Color color) -> std::vector<std::vector<Vertex>>;
 
     auto SetColor(Color color) -> void;

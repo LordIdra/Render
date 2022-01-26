@@ -1,11 +1,26 @@
 #include "Chunk.h"
 #include "terrain_generator.h"
+#include "util.h"
 #include <iostream>
 
 
 
 Chunk::Chunk(const std::vector<std::vector<Vertex>> &initialVertices) 
     : vertices_(initialVertices) {}
+
+auto Chunk::PlaneCoordToChunkCoord(const PlaneCoord coord) -> ChunkCoord {
+    // we don't truncate to int here because int truncates towards 0, while floor truncates towards negative infinity
+    const int chunkX = std::floor((coord.x/Chunk::SIZE));
+    const int chunkY = std::floor((coord.y/Chunk::SIZE));
+    return ChunkCoord {chunkX, chunkY};
+}
+
+auto Chunk::ChunkCoordToPlaneCoord(const ChunkCoord coord) -> PlaneCoord {
+    // we don't truncate to int here because int truncates towards 0, while floor truncates towards negative infinity
+    const float chunkX = (float)coord.x*Chunk::SIZE;
+    const float chunkY = (float)coord.y*Chunk::SIZE;
+    return PlaneCoord {chunkX, chunkY};
+}
 
 //IMPORTANT this generates all the 'Vertex' objects in the chunk. It is NOT related to OpenGL vertices
 auto Chunk::GenerateChunkVertices(const ChunkCoord &coord, const Color color) -> std::vector<std::vector<Vertex>> {
@@ -23,21 +38,25 @@ auto Chunk::GenerateChunkVertices(const ChunkCoord &coord, const Color color) ->
         vertices.emplace_back();
 
         for (int y = 0; y < Chunk::VERTEX_COUNT; y++) {
+            float planex = float(x) / float(Chunk::VERTEX_COUNT);
+            float planey = float(y) / float(Chunk::VERTEX_COUNT);
             vertices[x].push_back(
                 Vertex{
                     .position = WorldCoord(
                         chunkCoordinateX + float(x)*Chunk::VERTEX_SPACING,
-                        terrain_generator::GetHeight(coord, glm::vec2(0, 0)), //(float)(rand() % 100)/200.0,
+                        terrain_generator::GetHeight(coord, PlaneCoord(planex, planey)), //(float)(rand() % 100)/200.0,
                         chunkCoordinateY + float(y)*Chunk::VERTEX_SPACING),
                     .color = color});
         }
 
         for (int y = 0; y < Chunk::VERTEX_COUNT; y++) {
+            float planex = float(x) / float(Chunk::VERTEX_COUNT);
+            float planey = float(y) / float(Chunk::VERTEX_COUNT);
             vertices[x+1].push_back(
                 Vertex{
                     .position = WorldCoord(
                         chunkCoordinateX + float(x)*Chunk::VERTEX_SPACING + Chunk::VERTEX_SPACING,
-                        terrain_generator::GetHeight(coord, glm::vec2(0, 0)), //(float)(rand() % 100)/200.0,
+                        terrain_generator::GetHeight(coord, PlaneCoord(planex, planey)), //(float)(rand() % 100)/200.0,
                         chunkCoordinateY + float(y)*Chunk::VERTEX_SPACING + Chunk::VERTEX_SPACING/2),
                     .color = color});
         }

@@ -6,11 +6,12 @@
 
 
 
-using Color       = glm::vec4;
-using WorldCoord  = glm::vec3;
-using ChunkCoord  = glm::ivec2;
-using ChunkCorner = glm::ivec2;
-using Gradient    = glm::vec2;
+using Color       = glm::vec4;      // color
+using WorldCoord  = glm::vec3;      // can represent any point in 3D space on the map
+using PlaneCoord  = glm::vec2;      // can represent any point on the X and Z components of the map
+using ChunkCoord  = glm::ivec2;     // can represent any chunm on the map
+using ChunkCorner = glm::ivec2;     // represents the position of a chunk corner
+using Gradient    = glm::vec2;      // gradient vector used in noise generation
 
 enum Direction {
     north,

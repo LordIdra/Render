@@ -1,5 +1,6 @@
 #include "TerrainStorage.h"
 #include "logging.h"
+#include "util.h"
 #include <array>
 #include <cmath>
 #include <iostream>
@@ -9,7 +10,7 @@
 
 
 /* PRIVATE ------------------- */
-auto TerrainStorage::Distance(float x1, float y1, float x2, float y2) {
+auto TerrainStorage::Distance(const float x1, const float y1, const float x2, const float y2) {
     return sqrtf(((x1-x2)*(x1-x2)) + ((y1-y2)*(y1-y2)));
 }
 
@@ -23,15 +24,8 @@ auto TerrainStorage::CreateSquare(std::vector<ChunkCoord> &squareChunks, const C
     }
 }
 
-auto TerrainStorage::ConvertWorldCoordinatesToChunkCoordinates(const WorldCoord coord) -> ChunkCoord {
-    // we don't truncate to int here because int truncates towards 0, while floor truncates towards negative infinity
-    const int chunkX = std::floor((coord.x/Chunk::SIZE));
-    const int chunkY = std::floor((coord.z/Chunk::SIZE));
-    return ChunkCoord {chunkX, chunkY};
-}
-
-auto TerrainStorage::GetChunkCoordinatesInSquare(const WorldCoord coord, const int radius) -> std::vector<ChunkCoord> {
-    ChunkCoord centreChunk = ConvertWorldCoordinatesToChunkCoordinates(coord);
+auto TerrainStorage::GetChunkCoordinatesInSquare(const PlaneCoord coord, const int radius) -> std::vector<ChunkCoord> {
+    ChunkCoord centreChunk = Chunk::PlaneCoordToChunkCoord(coord);
     std::vector<ChunkCoord> squareChunks;
     CreateSquare(squareChunks, centreChunk, radius);
     return squareChunks;
@@ -60,13 +54,13 @@ auto TerrainStorage::DeleteChunk(const ChunkCoord coord) -> void {
 
 
 /* PUBLIC -------------------- */
-auto TerrainStorage::GetChunkCoordinatesInRadius(const WorldCoord coord, const int radius) -> std::vector<ChunkCoord> {
+auto TerrainStorage::GetChunkCoordinatesInRadius(const PlaneCoord coord, const int radius) -> std::vector<ChunkCoord> {
     // first we need to find a square containing all the chunks based on the input radius
     // then we go through all the chunks in the square
     //      -> find the centre of each chunk
     //      -> find the distance from the centre of each chunk to the centre of the centre chunk (yes, tongue twister)
     //      if distance > radius, add the chunk to the list
-    ChunkCoord chunkCoords = ConvertWorldCoordinatesToChunkCoordinates(coord);
+    ChunkCoord chunkCoords = Chunk::PlaneCoordToChunkCoord(coord);
     std::vector<ChunkCoord> squareChunkCoordinates = GetChunkCoordinatesInSquare(coord, radius);
     std::vector<ChunkCoord> circleChunkCoordinates;
     for (ChunkCoord coordinates : squareChunkCoordinates) {
@@ -86,7 +80,7 @@ auto TerrainStorage::GenerateChunk(const ChunkCoord coord) -> void {
     }
 }
 
-auto TerrainStorage::GenerateChunksInRadius(const WorldCoord coord, const int radius) -> void {
+auto TerrainStorage::GenerateChunksInRadius(const PlaneCoord coord, const int radius) -> void {
     for (ChunkCoord coord : GetChunkCoordinatesInRadius(coord, radius)) {
         GenerateChunk(coord);
     }

@@ -7,9 +7,9 @@
 #include <array>
 #include <vector>
 #include <cstdlib>
+#include <iostream>
 #include "logging.h"
 #include "util.h"
-
 
 
 namespace terrain_generator {
@@ -48,11 +48,44 @@ namespace terrain_generator {
         }
 
         auto GetChunkCorners(ChunkCoord coord) -> std::array<ChunkCoord, 4> {
-            return std::array<ChunkCoord, 4> {coord, coord + ChunkCoord(0, 1), coord + ChunkCoord(1, 1), coord + ChunkCoord(1, 0)};
+            return std::array<ChunkCoord, 4> {coord, coord + ChunkCoord(0, 1), coord + ChunkCoord(1, 0), coord + ChunkCoord(1, 1)};
+        }
+
+        auto SubtractPlaneCoord(PlaneCoord from, PlaneCoord coord) -> PlaneCoord {
+            return from - coord;
         }
 
         auto GetGradientVectors(std::array<ChunkCoord, 4> corners) -> std::array<glm::vec2, 4> {
             return std::array<Gradient, 4> { GetGradient(corners[0]), GetGradient(corners[1]), GetGradient(corners[2]), GetGradient(corners[3]) };
+        }
+
+        auto GetCornerVectors(std::array<ChunkCoord, 4> corners, PlaneCoord centre) -> std::array<PlaneCoord, 4> {
+            std::array<PlaneCoord, 4> cornersAsPlaneCoords = {};
+            for (int i = 0; i < 4; i++) {
+                cornersAsPlaneCoords[i] = SubtractPlaneCoord(centre, cornersAsPlaneCoords.at(i));   //NOLINT at() does not allow assignment
+            }
+            return cornersAsPlaneCoords;
+        }
+
+        auto GetDotProducts(std::array<PlaneCoord, 4> term1, std::array<PlaneCoord, 4> term2) -> std::array<float, 4> {
+            std::array<float, 4> cornersAsPlaneCoords = {};
+            for (int i = 0; i < 4; i++) {
+                cornersAsPlaneCoords[i] = glm::dot(term1.at(i), term2.at(i)); //NOLINT at() does not allow assignment
+            }
+            return cornersAsPlaneCoords;
+        }
+
+        auto Blend(float x) -> float {
+            return (6*powf(x, 5)) - (15*powf(x, 4)) + (10*powf(x, 3));
+        }
+
+        auto Interpolate(std::array<float, 4> dotProducts, PlaneCoord coords) -> float {
+            float fu = Blend((float)coords.x);
+            float fv = Blend((float)coords.y);
+            float nx0 = ((1-fu)*dotProducts[0]) + ((fu)*dotProducts[2]);
+            float nx1 = ((1-fu)*dotProducts[1]) + ((fu)*dotProducts[3]);
+            std::cout << fu << " " << fv << " " << nx0 << " " << nx1 << "\n";
+            return (((1-fv)*nx0) + ((fv)*nx1));
         }
     }
 
@@ -61,13 +94,11 @@ namespace terrain_generator {
         gradients = GenerateGradients();
     }
 
-    auto GetHeight(ChunkCoord chunkCoord, glm::vec2 worldCoord) -> float {
+    auto GetHeight(ChunkCoord chunkCoord, PlaneCoord planeCoord) -> float {
         std::array<ChunkCoord, 4> corners = GetChunkCorners(chunkCoord);
         std::array<Gradient, 4> gradientVectors = GetGradientVectors(corners);
-        //logging::Info(std::to_string(corners[0].x));
-        std::array<glm::vec2, 4> cornerVectors = {}; // TODO figure out how to initialize this
-        // TODO dot product thing
-        // TODO world domination
-        return corners[0].x;
+        std::array<PlaneCoord, 4> cornerVectors = GetCornerVectors(corners, planeCoord);
+        std::array<float, 4> dotProducts = GetDotProducts(gradientVectors, cornerVectors);
+        return Interpolate(dotProducts, planeCoord) * 2;
     }
 }
