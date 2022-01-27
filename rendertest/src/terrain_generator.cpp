@@ -82,9 +82,8 @@ namespace terrain_generator {
         auto Interpolate(std::array<float, 4> dotProducts, PlaneCoord coords) -> float {
             float fu = Blend((float)coords.x);
             float fv = Blend((float)coords.y);
-            float nx0 = ((1-fu)*dotProducts[0]) + ((fu)*dotProducts[2]);
-            float nx1 = ((1-fu)*dotProducts[1]) + ((fu)*dotProducts[3]);
-            std::cout << fu << " " << fv << " " << nx0 << " " << nx1 << "\n";
+            float nx0 = ((1-fu)*dotProducts[0]) + ((fu)*dotProducts[1]);
+            float nx1 = ((1-fu)*dotProducts[2]) + ((fu)*dotProducts[3]);
             return (((1-fv)*nx0) + ((fv)*nx1));
         }
     }
@@ -96,9 +95,10 @@ namespace terrain_generator {
 
     auto GetHeight(ChunkCoord chunkCoord, PlaneCoord planeCoord) -> float {
         std::array<ChunkCoord, 4> corners = GetChunkCorners(chunkCoord);
-        std::array<Gradient, 4> gradientVectors = GetGradientVectors(corners);
+        //std::array<Gradient, 4> gradientVectors = GetGradientVectors(corners);
+        std::array<Gradient, 4> gradientVectors {Gradient(1.0, 0.0), Gradient(0.0, 1.0), Gradient(0.707, 0.707), Gradient(0.0, -1.0)};
         std::array<PlaneCoord, 4> cornerVectors = GetCornerVectors(corners, planeCoord);
         std::array<float, 4> dotProducts = GetDotProducts(gradientVectors, cornerVectors);
-        return Interpolate(dotProducts, planeCoord) * 2;
+        return Interpolate(dotProducts, planeCoord) * 8;
     }
 }
